@@ -2,9 +2,16 @@
 
 ## 📦 Submission
 
+> ### 📞 Calling bot demo — a real phone call to the agent
+> **[▶ Watch Calling_Bot_Demo.mp4](submission/Calling_Bot_Demo.mp4)** (49 MB, plays in the browser)
+> A customer dials **+91 79658 53481** and talks to the Sarvam AI voice agent: it recognises the caller from their number,
+> looks up their order, checks warranty coverage and walks through a claim — the same brain, rules and ticket queue as the chat,
+> in the caller's own language. This is the part that makes it a **callbot, not just a chatbot**.
+
 | Deliverable | Link |
 |---|---|
-| 🎬 **Demo video** (4 min, 1280×720) | **[▶ Watch / download Demo_Video.mp4](https://github.com/Harsh-Go-yal/Conversation-AI-chatbot-and-callbot/releases/latest/download/Demo_Video.mp4)** — attached to the [v1.0 release](https://github.com/Harsh-Go-yal/Conversation-AI-chatbot-and-callbot/releases/latest) |
+| 📞 **Calling bot demo** (live phone call) | **[submission/Calling_Bot_Demo.mp4](submission/Calling_Bot_Demo.mp4)** · also on the [v1.0 release](https://github.com/Harsh-Go-yal/Conversation-AI-chatbot-and-callbot/releases/latest) |
+| 🎬 **Product demo video** (4 min — chat, tickets console, voice) | **[▶ Watch / download Demo_Video.mp4](https://github.com/Harsh-Go-yal/Conversation-AI-chatbot-and-callbot/releases/latest/download/Demo_Video.mp4)** — attached to the [v1.0 release](https://github.com/Harsh-Go-yal/Conversation-AI-chatbot-and-callbot/releases/latest) |
 | 📑 **Pitch deck** (4 slides, PDF) | [submission/Pitch_Deck.pdf](submission/Pitch_Deck.pdf) · [.pptx](submission/Pitch_Deck.pptx) |
 | 📘 **Prompt documentation** (PDF) | [submission/Prompt_Documentation.pdf](submission/Prompt_Documentation.pdf) |
 | 🧭 Architecture infographic | [docs/architecture_slide.png](docs/architecture_slide.png) |
