@@ -1,0 +1,10 @@
+services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: kohler-qdrant
+    ports:
+      - "6343:6333"   # REST  (host 6343 -> container 6333; 6333 is used by another project on this machine)
+      - "6344:6334"   # gRPC
+    volumes:
+      - ./qdrant_storage:/qdrant/storage
+    restart: unless-stopped

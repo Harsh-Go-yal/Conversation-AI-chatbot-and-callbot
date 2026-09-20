@@ -1,0 +1,472 @@
+{
+ "summary": {
+  "n": 15,
+  "passed": 11,
+  "retrieval_hit": [
+   1.0,
+   15
+  ],
+  "routing": [
+   0.9333333333333333,
+   15
+  ],
+  "conflict_recall": [
+   1.0,
+   3
+  ],
+  "access": [
+   null,
+   0
+  ],
+  "customer_public_only": [
+   1.0,
+   5
+  ],
+  "answer_hit": [
+   0.7692307692307693,
+   13
+  ],
+  "intent": [
+   null,
+   0
+  ],
+  "format": [
+   1.0,
+   2
+  ],
+  "json_valid": [
+   null,
+   0
+  ],
+  "faithfulness_mean": 0.938,
+  "faithfulness_n": 13,
+  "leak_restricted_to_cloud": 0,
+  "openai_calls": 42,
+  "local_calls": 2,
+  "latency_p50_s": 18.8,
+  "latency_p95_s": 83.8,
+  "stage_median_ms": {
+   "router": 2467,
+   "retrieval": 10240,
+   "conflicts": 672,
+   "reasoner": 4856
+  }
+ },
+ "results": [
+  {
+   "id": "hr01",
+   "persona": "internal",
+   "q": "What is our paternity leave entitlement?",
+   "seconds": 23.9,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "hr_in_leave_policy_v2"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 5911,
+    "retrieval": 13263,
+    "conflicts": 987,
+    "reasoner": 3680
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "conflict": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "hr04",
+   "persona": "internal",
+   "q": "What is the minimum number of days per week a hybrid employee must be on site?",
+   "seconds": 10.3,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "hr_remote_hybrid_work"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 1939,
+    "retrieval": 4540,
+    "conflicts": 652,
+    "reasoner": 3205
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "hr05",
+   "persona": "internal",
+   "q": "What is the home-office allowance for employees in India?",
+   "seconds": 16.9,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "hr_remote_hybrid_work"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 2316,
+    "retrieval": 10240,
+    "conflicts": 1834,
+    "reasoner": 2549
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "hr06",
+   "persona": "internal",
+   "q": "What's the FY26 salary band for a Grade 7 in Pune?",
+   "seconds": 138.5,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "local",
+   "cited": [
+    "hr_compensation_bands_fy26"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 1992,
+    "retrieval": 7556,
+    "conflicts": 2097,
+    "reasoner": 126775
+   },
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": false
+   },
+   "pass": false
+  },
+  {
+   "id": "fin04",
+   "persona": "internal",
+   "q": "Within how many days must expense claims be submitted?",
+   "seconds": 18.8,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "fin_in_te_addendum_v1_4",
+    "fin_in_te_addendum_v2_1"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 1927,
+    "retrieval": 11454,
+    "conflicts": 1814,
+    "reasoner": 3580
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "leg06",
+   "persona": "internal",
+   "q": "At what test pressure does BIS IS 17953 rate taps, and how does that compare with WaterSense?",
+   "seconds": 18.6,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "legal_water_efficiency_standards_matrix"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 2852,
+    "retrieval": 12116,
+    "conflicts": 565,
+    "reasoner": 3070
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "leg07",
+   "persona": "internal",
+   "q": "Is our India privacy policy DPDP-ready?",
+   "seconds": 19.7,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "legal_in_dpdp_readiness_note"
+   ],
+   "conflicts": [
+    "review_recommended"
+   ],
+   "timings": {
+    "router": 2785,
+    "retrieval": 10394,
+    "conflicts": 1173,
+    "reasoner": 5309
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "conflict": true
+   },
+   "pass": true
+  },
+  {
+   "id": "pri02",
+   "persona": "internal",
+   "q": "How long do we retain warranty registration and claim records?",
+   "seconds": 20.9,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "privacy_corporate_notice",
+    "privacy_data_retention_schedule",
+    "support_in_warranty_policy_b"
+   ],
+   "conflicts": [
+    "superseded",
+    "superseded"
+   ],
+   "timings": {
+    "router": 3172,
+    "retrieval": 11050,
+    "conflicts": 1164,
+    "reasoner": 5478
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": false
+   },
+   "pass": false
+  },
+  {
+   "id": "pri04",
+   "persona": "customer",
+   "q": "Does Kohler respond to Do Not Track signals?",
+   "seconds": 7.9,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "privacy_corporate_notice"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 1978,
+    "retrieval": 3541,
+    "conflicts": 0,
+    "reasoner": 2339
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "customer_public_only": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "sup01",
+   "persona": "customer",
+   "q": "What is the warranty on a Kohler intelligent toilet in India?",
+   "seconds": 11.8,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "support_in_warranty_policy_b"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 2046,
+    "retrieval": 4278,
+    "conflicts": 594,
+    "reasoner": 4856
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "conflict": true,
+    "customer_public_only": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "sup08",
+   "persona": "customer",
+   "q": "Compare water use of Cimarron, Highline and Wellworth in litres and show yearly savings for a family of four as an Excel download",
+   "seconds": 20.0,
+   "intent": "retrieval_question",
+   "format": "excel",
+   "llm": "openai",
+   "cited": [
+    "support_product_catalog",
+    "support_spec_k3493_highline",
+    "support_spec_k3998_wellworth"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 3405,
+    "retrieval": 10726,
+    "conflicts": 672,
+    "reasoner": 5111
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "customer_public_only": true,
+    "answer_hit": true,
+    "format": true
+   },
+   "pass": true
+  },
+  {
+   "id": "sup10",
+   "persona": "internal",
+   "q": "A customer's intelligent toilet electronics failed after 4 years \u2014 is it covered? Draft the reply.",
+   "seconds": 22.2,
+   "intent": "retrieval_question",
+   "format": "email",
+   "llm": "openai",
+   "cited": [
+    "support_in_warranty_policy_b"
+   ],
+   "conflicts": [
+    "superseded",
+    "superseded"
+   ],
+   "timings": {
+    "router": 3278,
+    "retrieval": 9937,
+    "conflicts": 511,
+    "reasoner": 5525
+   },
+   "faithfulness": 0.2,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": false,
+    "format": true
+   },
+   "pass": false
+  },
+  {
+   "id": "sup11",
+   "persona": "internal",
+   "q": "What is the Tier 1 refund authority limit for customer care in India?",
+   "seconds": 83.8,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "local",
+   "cited": [
+    "support_escalation_matrix_sla"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 1609,
+    "retrieval": 3957,
+    "conflicts": 707,
+    "reasoner": 77504
+   },
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "sus01",
+   "persona": "customer",
+   "q": "How many gallons of water did Kohler WaterSense products save in the US in 2024?",
+   "seconds": 10.0,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "legal_global_impact_report_2024"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 2741,
+    "retrieval": 4832,
+    "conflicts": 0,
+    "reasoner": 2426
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "customer_public_only": true,
+    "answer_hit": false
+   },
+   "pass": false
+  },
+  {
+   "id": "sus04",
+   "persona": "customer",
+   "q": "Which Kohler toilets in the catalog are WaterSense-labeled?",
+   "seconds": 18.0,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "support_watersense_brochure"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 2467,
+    "retrieval": 10677,
+    "conflicts": 0,
+    "reasoner": 4893
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "customer_public_only": true,
+    "answer_hit": true
+   },
+   "pass": true
+  }
+ ]
+}

@@ -1,0 +1,278 @@
+{
+ "summary": {
+  "n": 8,
+  "passed": 8,
+  "retrieval_hit": [
+   1.0,
+   5
+  ],
+  "routing": [
+   1.0,
+   3
+  ],
+  "conflict_recall": [
+   1.0,
+   1
+  ],
+  "access": [
+   null,
+   0
+  ],
+  "customer_public_only": [
+   null,
+   0
+  ],
+  "answer_hit": [
+   1.0,
+   3
+  ],
+  "intent": [
+   1.0,
+   3
+  ],
+  "format": [
+   1.0,
+   4
+  ],
+  "json_valid": [
+   1.0,
+   1
+  ],
+  "faithfulness_mean": 1.0,
+  "faithfulness_n": 5,
+  "leak_restricted_to_cloud": 0,
+  "openai_calls": 17,
+  "local_calls": 3,
+  "latency_p50_s": 23.9,
+  "latency_p95_s": 139.7,
+  "stage_median_ms": {
+   "router": 2304,
+   "retrieval": 7515,
+   "conflicts": 972,
+   "reasoner": 4483
+  }
+ },
+ "results": [
+  {
+   "id": "fin04",
+   "persona": "internal",
+   "q": "Within how many days must expense claims be submitted?",
+   "seconds": 139.7,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "local",
+   "cited": [
+    "fin_global_travel_expense",
+    "fin_in_te_addendum_v1_4",
+    "fin_in_te_addendum_v2_1"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 4194,
+    "retrieval": 16489,
+    "conflicts": 4492,
+    "reasoner": 114427
+   },
+   "checks": {
+    "retrieval_hit": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "leg05",
+   "persona": "internal",
+   "q": "What is the status of the Project Cascade legal hold and what must be preserved?",
+   "seconds": 160.3,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "local",
+   "cited": [
+    "legal_hold_memo_project_cascade"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 2759,
+    "retrieval": 8754,
+    "conflicts": 879,
+    "reasoner": 147816
+   },
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "pri03",
+   "persona": "internal",
+   "q": "We have a suspected customer-data breach \u2014 what must happen in the first 24 hours and who do we notify in India?",
+   "seconds": 108.2,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "local",
+   "cited": [
+    "privacy_breach_response_playbook"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 4012,
+    "retrieval": 13174,
+    "conflicts": 1366,
+    "reasoner": 89615
+   },
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "sup10",
+   "persona": "internal",
+   "q": "A customer's intelligent toilet electronics failed after 4 years \u2014 is it covered? Draft the reply.",
+   "seconds": 34.8,
+   "intent": "retrieval_question",
+   "format": "email",
+   "llm": "openai",
+   "cited": [
+    "support_in_warranty_policy",
+    "support_in_warranty_policy_b"
+   ],
+   "conflicts": [
+    "superseded",
+    "superseded"
+   ],
+   "timings": {
+    "router": 4171,
+    "retrieval": 21550,
+    "conflicts": 1480,
+    "reasoner": 5024
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "conflict": true,
+    "format": true
+   },
+   "pass": true
+  },
+  {
+   "id": "mt01",
+   "persona": "internal",
+   "q": "What is our paternity leave entitlement?",
+   "seconds": 13.1,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "hr_in_leave_policy_v1",
+    "hr_in_leave_policy_v2"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 1850,
+    "retrieval": 6277,
+    "conflicts": 972,
+    "reasoner": 3943
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true
+   },
+   "pass": true
+  },
+  {
+   "id": "mt02",
+   "persona": "internal",
+   "q": "Give me that as JSON",
+   "seconds": 1.9,
+   "intent": "format_conversion",
+   "format": "json",
+   "llm": "openai",
+   "cited": [
+    "hr_in_leave_policy_v1",
+    "hr_in_leave_policy_v2"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 1850,
+    "retrieval": 6277,
+    "conflicts": 972,
+    "reasoner": 3943
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "intent": true,
+    "format": true,
+    "json_valid": true
+   },
+   "pass": true
+  },
+  {
+   "id": "mt03",
+   "persona": "internal",
+   "q": "Now make an Excel summary",
+   "seconds": 2.5,
+   "intent": "format_conversion",
+   "format": "excel",
+   "llm": "openai",
+   "cited": [
+    "hr_in_leave_policy_v1",
+    "hr_in_leave_policy_v2"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 1850,
+    "retrieval": 6277,
+    "conflicts": 972,
+    "reasoner": 3943
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "intent": true,
+    "format": true
+   },
+   "pass": true
+  },
+  {
+   "id": "mt04",
+   "persona": "internal",
+   "q": "Draft an email to my manager requesting the leave",
+   "seconds": 4.4,
+   "intent": "format_conversion",
+   "format": "email",
+   "llm": "openai",
+   "cited": [
+    "hr_in_leave_policy_v1",
+    "hr_in_leave_policy_v2"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 1850,
+    "retrieval": 6277,
+    "conflicts": 972,
+    "reasoner": 3943
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "intent": true,
+    "format": true
+   },
+   "pass": true
+  }
+ ]
+}

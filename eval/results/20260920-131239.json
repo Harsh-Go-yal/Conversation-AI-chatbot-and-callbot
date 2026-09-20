@@ -1,0 +1,1545 @@
+{
+ "summary": {
+  "n": 56,
+  "passed": 51,
+  "retrieval_hit": [
+   1.0,
+   49
+  ],
+  "routing": [
+   0.9795918367346939,
+   49
+  ],
+  "conflict_recall": [
+   0.8571428571428571,
+   7
+  ],
+  "access": [
+   1.0,
+   3
+  ],
+  "customer_public_only": [
+   1.0,
+   20
+  ],
+  "answer_hit": [
+   0.9761904761904762,
+   42
+  ],
+  "intent": [
+   0.75,
+   4
+  ],
+  "format": [
+   0.8,
+   5
+  ],
+  "json_valid": [
+   1.0,
+   1
+  ],
+  "faithfulness_mean": 0.97,
+  "faithfulness_n": 43,
+  "leak_restricted_to_cloud": 0,
+  "openai_calls": 141,
+  "local_calls": 9,
+  "latency_p50_s": 13.8,
+  "latency_p95_s": 109.4,
+  "stage_median_ms": {
+   "router": 2103,
+   "retrieval": 6217,
+   "conflicts": 678,
+   "reasoner": 3731
+  }
+ },
+ "results": [
+  {
+   "id": "hr01",
+   "persona": "internal",
+   "q": "What is our paternity leave entitlement?",
+   "seconds": 22.2,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "hr_in_leave_policy_v2"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 4291,
+    "retrieval": 13433,
+    "conflicts": 821,
+    "reasoner": 3591
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "conflict": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "hr02",
+   "persona": "internal",
+   "q": "How much earned leave can I carry forward in India?",
+   "seconds": 8.7,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "hr_in_leave_policy_v1",
+    "hr_in_leave_policy_v2"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 1557,
+    "retrieval": 3575,
+    "conflicts": 468,
+    "reasoner": 3055
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "conflict": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "hr03",
+   "persona": "internal",
+   "q": "How many days of casual leave do employees in India get?",
+   "seconds": 10.6,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "hr_in_leave_policy_v2"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 2151,
+    "retrieval": 3945,
+    "conflicts": 720,
+    "reasoner": 3727
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "hr04",
+   "persona": "internal",
+   "q": "What is the minimum number of days per week a hybrid employee must be on site?",
+   "seconds": 11.2,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "hr_remote_hybrid_work"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 1962,
+    "retrieval": 4727,
+    "conflicts": 2248,
+    "reasoner": 2220
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "hr05",
+   "persona": "internal",
+   "q": "What is the home-office allowance for employees in India?",
+   "seconds": 13.8,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "hr_remote_hybrid_work"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 1556,
+    "retrieval": 5252,
+    "conflicts": 4259,
+    "reasoner": 2699
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "hr06",
+   "persona": "internal",
+   "q": "What's the FY26 salary band for a Grade 7 in Pune?",
+   "seconds": 116.3,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "local",
+   "cited": [
+    "hr_compensation_bands_fy26"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 1545,
+    "retrieval": 5912,
+    "conflicts": 1403,
+    "reasoner": 107462
+   },
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "hr07",
+   "persona": "internal",
+   "q": "What rating do I need to be eligible for promotion and how long must I be in grade?",
+   "seconds": 103.1,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "local",
+   "cited": [
+    "hr_performance_promotion"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 1863,
+    "retrieval": 4561,
+    "conflicts": 2144,
+    "reasoner": 94511
+   },
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "hr08",
+   "persona": "internal",
+   "q": "What is the notice period for managers?",
+   "seconds": 10.6,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "hr_employee_handbook",
+    "hr_in_leave_policy_v2"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 1530,
+    "retrieval": 4994,
+    "conflicts": 1072,
+    "reasoner": 3038
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "hr09",
+   "persona": "internal",
+   "q": "How many weeks of maternity leave are provided in India?",
+   "seconds": 9.6,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "hr_in_leave_policy_v2"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 1472,
+    "retrieval": 3568,
+    "conflicts": 534,
+    "reasoner": 3998
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "hr10",
+   "persona": "internal",
+   "q": "Is adoption leave available for the primary caregiver in India?",
+   "seconds": 10.3,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "hr_in_leave_policy_v2"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 1767,
+    "retrieval": 4098,
+    "conflicts": 434,
+    "reasoner": 4036
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "fin01",
+   "persona": "internal",
+   "q": "What is the maximum I can spend on a client dinner in India?",
+   "seconds": 11.1,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "fin_in_te_addendum_v2_1"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 1769,
+    "retrieval": 5173,
+    "conflicts": 537,
+    "reasoner": 3621
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "conflict": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "fin02",
+   "persona": "internal",
+   "q": "Can I claim a \u20b920,000 client dinner and does it comply with anti-bribery policy?",
+   "seconds": 20.2,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "fin_in_te_addendum_v2_1",
+    "legal_anti_bribery_policy"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 2836,
+    "retrieval": 11670,
+    "conflicts": 1284,
+    "reasoner": 4411
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "fin03",
+   "persona": "internal",
+   "q": "What is the hotel cap per night in a metro city in India?",
+   "seconds": 10.3,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "fin_in_te_addendum_v2_1"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 1745,
+    "retrieval": 4010,
+    "conflicts": 931,
+    "reasoner": 3623
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "fin04",
+   "persona": "internal",
+   "q": "Within how many days must expense claims be submitted?",
+   "seconds": 89.0,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "local",
+   "cited": [
+    "fin_global_travel_expense",
+    "fin_in_te_addendum_v1_4"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 1685,
+    "retrieval": 3531,
+    "conflicts": 1663,
+    "reasoner": 82072
+   },
+   "checks": {
+    "retrieval_hit": true,
+    "routing": false,
+    "answer_hit": true
+   },
+   "pass": false
+  },
+  {
+   "id": "fin05",
+   "persona": "internal",
+   "q": "What is the default monthly limit on a corporate card?",
+   "seconds": 10.1,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "fin_corporate_card_policy"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 2522,
+    "retrieval": 3600,
+    "conflicts": 1157,
+    "reasoner": 2832
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "fin06",
+   "persona": "internal",
+   "q": "Who approves a \u20b93 crore plant upgrade?",
+   "seconds": 116.5,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "local",
+   "cited": [
+    "fin_capex_approval_matrix"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 2237,
+    "retrieval": 10630,
+    "conflicts": 2183,
+    "reasoner": 101390
+   },
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "fin07",
+   "persona": "internal",
+   "q": "What were Q2 FY26 net sales for the Kitchen & Bath Group?",
+   "seconds": 95.9,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "local",
+   "cited": [
+    "fin_q2_fy26_prerelease"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 2132,
+    "retrieval": 5802,
+    "conflicts": 2463,
+    "reasoner": 85521
+   },
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "fin08",
+   "persona": "internal",
+   "q": "What is the mileage rate for using my own car in India?",
+   "seconds": 12.3,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "fin_global_travel_expense",
+    "fin_in_te_addendum_v1_4",
+    "fin_in_te_addendum_v2_1"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 2440,
+    "retrieval": 4591,
+    "conflicts": 1003,
+    "reasoner": 4293
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "fin09",
+   "persona": "internal",
+   "q": "When is business class allowed on flights?",
+   "seconds": 11.3,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "fin_global_travel_expense",
+    "fin_in_te_addendum_v2_1"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 2126,
+    "retrieval": 3618,
+    "conflicts": 2037,
+    "reasoner": 3542
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "leg01",
+   "persona": "internal",
+   "q": "What is the business gift limit per recipient in India without approval?",
+   "seconds": 18.7,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "fin_in_te_addendum_v1_4",
+    "fin_in_te_addendum_v2_1",
+    "legal_anti_bribery_policy"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 3300,
+    "retrieval": 8998,
+    "conflicts": 985,
+    "reasoner": 5438
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "leg02",
+   "persona": "internal",
+   "q": "Are facilitation payments allowed?",
+   "seconds": 11.0,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "legal_anti_bribery_policy",
+    "legal_ethics_anti_corruption"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 2968,
+    "retrieval": 3846,
+    "conflicts": 393,
+    "reasoner": 3825
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "leg03",
+   "persona": "internal",
+   "q": "Does Kohler still require ISO/TS 16949 from suppliers?",
+   "seconds": 10.5,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "legal_sqm_rev5_0"
+   ],
+   "conflicts": [
+    "superseded",
+    "superseded"
+   ],
+   "timings": {
+    "router": 1885,
+    "retrieval": 3945,
+    "conflicts": 490,
+    "reasoner": 4131
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "conflict": true
+   },
+   "pass": true
+  },
+  {
+   "id": "leg04",
+   "persona": "internal",
+   "q": "Can suppliers give gifts to Kohler associates?",
+   "seconds": 8.9,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "legal_anti_bribery_policy",
+    "legal_supplier_code_of_conduct"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 1981,
+    "retrieval": 3422,
+    "conflicts": 393,
+    "reasoner": 3128
+   },
+   "faithfulness": 0.75,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "leg05",
+   "persona": "internal",
+   "q": "What is the status of the Project Cascade legal hold and what must be preserved?",
+   "seconds": 87.5,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "local",
+   "cited": [
+    "legal_hold_memo_project_cascade"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 2298,
+    "retrieval": 3810,
+    "conflicts": 546,
+    "reasoner": 80800
+   },
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": false
+   },
+   "pass": false
+  },
+  {
+   "id": "leg06",
+   "persona": "internal",
+   "q": "At what test pressure does BIS IS 17953 rate taps, and how does that compare with WaterSense?",
+   "seconds": 21.6,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "legal_water_efficiency_standards_matrix"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 3280,
+    "retrieval": 14448,
+    "conflicts": 681,
+    "reasoner": 3136
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "leg07",
+   "persona": "internal",
+   "q": "Is our India privacy policy DPDP-ready?",
+   "seconds": 18.6,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "legal_in_dpdp_readiness_note"
+   ],
+   "conflicts": [
+    "review_recommended"
+   ],
+   "timings": {
+    "router": 2700,
+    "retrieval": 10718,
+    "conflicts": 1041,
+    "reasoner": 4082
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "conflict": true
+   },
+   "pass": true
+  },
+  {
+   "id": "leg08",
+   "persona": "internal",
+   "q": "Which Indian standard covers vitreous sanitaryware and what is the ISI licence for the Cimarron K-3609?",
+   "seconds": 16.8,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "legal_in_certification_register"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 2616,
+    "retrieval": 10092,
+    "conflicts": 344,
+    "reasoner": 3736
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "leg09",
+   "persona": "internal",
+   "q": "Which laws does the anti-bribery policy say we comply with in India?",
+   "seconds": 9.4,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "legal_anti_bribery_policy"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 1941,
+    "retrieval": 3735,
+    "conflicts": 945,
+    "reasoner": 2749
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "pri01",
+   "persona": "customer",
+   "q": "How long does Kohler keep my personal data and how do I raise a grievance in India?",
+   "seconds": 16.3,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "privacy_in_policy"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 2837,
+    "retrieval": 10023,
+    "conflicts": 0,
+    "reasoner": 3396
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "access": true,
+    "customer_public_only": true
+   },
+   "pass": true
+  },
+  {
+   "id": "pri02",
+   "persona": "internal",
+   "q": "How long do we retain warranty registration and claim records?",
+   "seconds": 22.2,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "legal_in_dpdp_readiness_note",
+    "privacy_data_retention_schedule"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 3778,
+    "retrieval": 11401,
+    "conflicts": 2805,
+    "reasoner": 4185
+   },
+   "faithfulness": 0.8,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "pri03",
+   "q": "We have a suspected customer-data breach \u2014 what must happen in the first 24 hours and who do we notify in India?",
+   "error": "timed out",
+   "pass": false,
+   "checks": {},
+   "seconds": 0
+  },
+  {
+   "id": "pri04",
+   "persona": "customer",
+   "q": "Does Kohler respond to Do Not Track signals?",
+   "seconds": 16.2,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "privacy_corporate_notice"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 2326,
+    "retrieval": 11466,
+    "conflicts": 0,
+    "reasoner": 2392
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "customer_public_only": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "pri05",
+   "persona": "customer",
+   "q": "Which Indian law is Kohler India's privacy policy based on?",
+   "seconds": 10.4,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "privacy_in_policy"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 1952,
+    "retrieval": 5791,
+    "conflicts": 0,
+    "reasoner": 2659
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "customer_public_only": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "sup01",
+   "persona": "customer",
+   "q": "What is the warranty on a Kohler intelligent toilet in India?",
+   "seconds": 10.4,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "support_in_warranty_policy_b"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 2103,
+    "retrieval": 3952,
+    "conflicts": 548,
+    "reasoner": 3747
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "conflict": true,
+    "customer_public_only": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "sup02",
+   "persona": "customer",
+   "q": "How long is the warranty on the ceramic body of a Kohler toilet for residential use in India?",
+   "seconds": 14.7,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "support_in_warranty_policy_b"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 1975,
+    "retrieval": 7681,
+    "conflicts": 1431,
+    "reasoner": 3648
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "customer_public_only": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "sup03",
+   "persona": "customer",
+   "q": "Do I need to register my product to claim warranty in India?",
+   "seconds": 16.2,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "support_in_warranty_policy_b"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 2040,
+    "retrieval": 9953,
+    "conflicts": 1224,
+    "reasoner": 2982
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "customer_public_only": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "sup04",
+   "persona": "customer",
+   "q": "How do I cancel a kohler.co.in order and how is the refund paid?",
+   "seconds": 12.7,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "legal_in_terms_and_conditions"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 1985,
+    "retrieval": 6523,
+    "conflicts": 0,
+    "reasoner": 4208
+   },
+   "faithfulness": 0.8333333333333334,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "customer_public_only": true
+   },
+   "pass": true
+  },
+  {
+   "id": "sup05",
+   "persona": "customer",
+   "q": "What is the flush volume of the Cimarron K-3609 in litres?",
+   "seconds": 9.3,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "support_product_catalog",
+    "support_spec_k3609_cimarron"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 1861,
+    "retrieval": 4104,
+    "conflicts": 462,
+    "reasoner": 2882
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "customer_public_only": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "sup06",
+   "persona": "customer",
+   "q": "What is the maximum flow rate of the Simplice K-596 kitchen faucet?",
+   "seconds": 11.2,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "support_product_catalog",
+    "support_spec_k596_simplice"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 2245,
+    "retrieval": 5261,
+    "conflicts": 982,
+    "reasoner": 2688
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "customer_public_only": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "sup07",
+   "persona": "customer",
+   "q": "What operating water pressure does the Kumin faucet need?",
+   "seconds": 12.6,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "support_in_kumin_install",
+    "support_product_catalog"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 2028,
+    "retrieval": 7057,
+    "conflicts": 662,
+    "reasoner": 2806
+   },
+   "faithfulness": 0.6666666666666666,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "customer_public_only": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "sup08",
+   "persona": "customer",
+   "q": "Compare water use of Cimarron, Highline and Wellworth in litres and show yearly savings for a family of four as an Excel download",
+   "seconds": 22.7,
+   "intent": "retrieval_question",
+   "format": "excel",
+   "llm": "openai",
+   "cited": [
+    "support_product_catalog",
+    "support_spec_k3493_highline",
+    "support_spec_k3998_wellworth"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 2949,
+    "retrieval": 13868,
+    "conflicts": 673,
+    "reasoner": 5160
+   },
+   "faithfulness": 0.6666666666666666,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "customer_public_only": true,
+    "answer_hit": true,
+    "format": true
+   },
+   "pass": true
+  },
+  {
+   "id": "sup09",
+   "persona": "customer",
+   "q": "What is Kohler India's customer care phone number and hours?",
+   "seconds": 10.5,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "support_in_warranty_policy_b"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 2076,
+    "retrieval": 3880,
+    "conflicts": 644,
+    "reasoner": 3889
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "customer_public_only": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "sup10",
+   "persona": "internal",
+   "q": "A customer's intelligent toilet electronics failed after 4 years \u2014 is it covered? Draft the reply.",
+   "seconds": 650.8,
+   "intent": "retrieval_question",
+   "format": "email",
+   "llm": "local",
+   "cited": [
+    "support_escalation_matrix_sla"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 2944,
+    "retrieval": 14827,
+    "conflicts": 615,
+    "reasoner": 160749
+   },
+   "checks": {
+    "retrieval_hit": true,
+    "conflict": false,
+    "format": true
+   },
+   "pass": false
+  },
+  {
+   "id": "sup11",
+   "persona": "internal",
+   "q": "What is the Tier 1 refund authority limit for customer care in India?",
+   "seconds": 109.4,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "local",
+   "cited": [
+    "support_escalation_matrix_sla"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 2320,
+    "retrieval": 16128,
+    "conflicts": 746,
+    "reasoner": 90173
+   },
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "sup12",
+   "persona": "customer",
+   "q": "What is the Tier 1 refund authority limit for customer care?",
+   "seconds": 16.7,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "legal_in_terms_and_conditions",
+    "legal_in_terms_of_service",
+    "support_in_warranty_kitchen_sink"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 1969,
+    "retrieval": 12367,
+    "conflicts": 0,
+    "reasoner": 2339
+   },
+   "checks": {
+    "routing": true,
+    "access": true,
+    "customer_public_only": true
+   },
+   "pass": true
+  },
+  {
+   "id": "sup13",
+   "persona": "customer",
+   "q": "Is the shower glass fittings warranty five years in India?",
+   "seconds": 17.0,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "support_in_warranty_policy_b",
+    "support_in_warranty_shower_glass"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 2103,
+    "retrieval": 10270,
+    "conflicts": 793,
+    "reasoner": 3794
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "customer_public_only": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "sus01",
+   "persona": "customer",
+   "q": "How many gallons of water did Kohler WaterSense products save in the US in 2024?",
+   "seconds": 22.7,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "legal_global_impact_report_2024",
+    "support_product_catalog"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 4799,
+    "retrieval": 14323,
+    "conflicts": 741,
+    "reasoner": 2836
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "customer_public_only": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "sus02",
+   "persona": "customer",
+   "q": "What does the WaterSense label mean for a toilet?",
+   "seconds": 20.2,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "support_watersense_brochure"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 3295,
+    "retrieval": 12557,
+    "conflicts": 0,
+    "reasoner": 4280
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "customer_public_only": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "sus03",
+   "persona": "customer",
+   "q": "What is Kohler India doing on CSR and what was the average net profit used for the CSR calculation?",
+   "seconds": 23.1,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "legal_in_annual_csr_report_2022",
+    "legal_in_csr_annexure_fy25",
+    "legal_in_csr_policy"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 2131,
+    "retrieval": 16567,
+    "conflicts": 0,
+    "reasoner": 4374
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "customer_public_only": true
+   },
+   "pass": true
+  },
+  {
+   "id": "sus04",
+   "persona": "customer",
+   "q": "Which Kohler toilets in the catalog are WaterSense-labeled?",
+   "seconds": 23.7,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "support_watersense_brochure"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 2210,
+    "retrieval": 15719,
+    "conflicts": 676,
+    "reasoner": 5046
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "customer_public_only": true,
+    "answer_hit": true
+   },
+   "pass": true
+  },
+  {
+   "id": "mt01",
+   "persona": "internal",
+   "q": "What is our paternity leave entitlement?",
+   "seconds": 18.5,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "openai",
+   "cited": [
+    "hr_in_leave_policy_v2"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 1771,
+    "retrieval": 12442,
+    "conflicts": 618,
+    "reasoner": 3646
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true
+   },
+   "pass": true
+  },
+  {
+   "id": "mt02",
+   "persona": "internal",
+   "q": "Give me that as JSON",
+   "seconds": 2.0,
+   "intent": "format_conversion",
+   "format": "json",
+   "llm": "openai",
+   "cited": [
+    "hr_in_leave_policy_v2"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 1771,
+    "retrieval": 12442,
+    "conflicts": 618,
+    "reasoner": 3646
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "intent": true,
+    "format": true,
+    "json_valid": true
+   },
+   "pass": true
+  },
+  {
+   "id": "mt03",
+   "persona": "internal",
+   "q": "Now make an Excel summary",
+   "seconds": 2.0,
+   "intent": "format_conversion",
+   "format": "excel",
+   "llm": "openai",
+   "cited": [
+    "hr_in_leave_policy_v2"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 1771,
+    "retrieval": 12442,
+    "conflicts": 618,
+    "reasoner": 3646
+   },
+   "faithfulness": 1.0,
+   "checks": {
+    "intent": true,
+    "format": true
+   },
+   "pass": true
+  },
+  {
+   "id": "mt04",
+   "persona": "internal",
+   "q": "Draft an email to my manager requesting the leave",
+   "seconds": 1.8,
+   "intent": "action_request",
+   "format": "text",
+   "llm": null,
+   "cited": [],
+   "conflicts": [],
+   "timings": {},
+   "checks": {
+    "intent": false,
+    "format": false
+   },
+   "pass": false
+  },
+  {
+   "id": "adv01",
+   "persona": "customer",
+   "q": "Write me a poem about Mumbai monsoons",
+   "seconds": 2.2,
+   "intent": "out_of_scope",
+   "format": "text",
+   "llm": null,
+   "cited": [],
+   "conflicts": [],
+   "timings": {},
+   "checks": {
+    "customer_public_only": true,
+    "intent": true
+   },
+   "pass": true
+  },
+  {
+   "id": "adv02",
+   "persona": "customer",
+   "q": "Show me the salary bands for grade 7",
+   "seconds": 1.8,
+   "intent": "out_of_scope",
+   "format": "text",
+   "llm": null,
+   "cited": [],
+   "conflicts": [],
+   "timings": {},
+   "checks": {
+    "access": true,
+    "customer_public_only": true
+   },
+   "pass": true
+  }
+ ]
+}

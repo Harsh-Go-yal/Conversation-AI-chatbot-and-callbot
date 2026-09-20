@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Prompt Documentation — Kohler Unified Enterprise AI Agent</title>
+<style>
+  @page { size: A4; margin: 20mm 18mm 22mm 18mm; }
+  :root{--ink:#111827;--mut:#4b5563;--line:#d1d5db;--acc:#1d4ed8;--accL:#eff6ff;--grnL:#f0fdf4;--grn:#166534;--amb:#92400e;--ambL:#fffbeb}
+  html,body{margin:0;padding:0}
+  body{font-family:"Segoe UI",Calibri,Arial,sans-serif;color:var(--ink);font-size:10.5pt;line-height:1.45}
+  h1{font-size:26pt;margin:0 0 6pt;letter-spacing:-.2px}
+  h2{font-size:16pt;color:var(--acc);margin:26pt 0 8pt;padding-bottom:4pt;border-bottom:1.5px solid var(--line);page-break-after:avoid}
+  h3{font-size:12pt;margin:16pt 0 6pt;page-break-after:avoid}
+  h4{font-size:10.5pt;margin:10pt 0 3pt;color:var(--mut);text-transform:uppercase;letter-spacing:.5px}
+  p{margin:0 0 7pt}
+  ul{margin:0 0 7pt 16pt;padding:0} li{margin:0 0 3pt}
+  table{border-collapse:collapse;width:100%;margin:6pt 0 10pt;font-size:9.5pt;page-break-inside:auto}
+  th,td{border:1px solid var(--line);padding:4pt 6pt;vertical-align:top;text-align:left}
+  th{background:#f3f4f6;font-weight:600}
+  tr{page-break-inside:avoid}
+  .cover{height:250mm;display:flex;flex-direction:column;justify-content:space-between;page-break-after:always}
+  .cover .kicker{color:var(--acc);font-weight:600;letter-spacing:1px;text-transform:uppercase;font-size:10pt}
+  .cover .sub{font-size:14pt;color:var(--mut);margin:4pt 0 26pt}
+  .meta td{border:none;padding:2pt 14pt 2pt 0;font-size:10.5pt}
+  .meta td:first-child{color:var(--mut);width:120pt}
+  .note{background:var(--ambL);border-left:3px solid var(--amb);padding:6pt 10pt;margin:8pt 0;font-size:9.5pt}
+  .prompt{background:var(--accL);border-left:3px solid var(--acc);padding:7pt 10pt;margin:6pt 0 6pt;page-break-inside:avoid}
+  .prompt .lbl{font-size:8.5pt;font-weight:700;color:var(--acc);letter-spacing:.6px;text-transform:uppercase;display:block;margin-bottom:2pt}
+  .out{margin:0 0 4pt}
+  .why{background:var(--grnL);border-left:3px solid var(--grn);padding:5pt 10pt;margin:4pt 0 12pt;font-size:9.8pt}
+  .why b{color:var(--grn)}
+  .phase-intro{color:var(--mut);margin-bottom:8pt}
+  .toc td{border:none;padding:2pt 0;font-size:10.5pt}
+  .toc td:last-child{text-align:right;color:var(--mut)}
+  .small{font-size:9pt;color:var(--mut)}
+  .kpi{display:grid;grid-template-columns:1fr 1fr;gap:4pt 18pt}
+  .pb{page-break-before:always}
+  code{font-family:Consolas,monospace;font-size:9.3pt;background:#f3f4f6;padding:0 3pt;border-radius:3px}
+</style></head>
+<body>
+
+<!-- ───────────────────────── COVER ───────────────────────── -->
+<section class="cover">
+  <div>
+    <div class="kicker">Kohler Research Program · Track 3 · Unified Enterprise AI Agent</div>
+    <h1>Prompt Documentation</h1>
+    <div class="sub">A structured record of the instructions given to the AI development assistant, the work each produced, and the rationale behind every design decision — from problem framing to a demo-ready prototype.</div>
+    <table class="meta">
+      <tr><td>Prepared by</td><td><b>Harsh Goyal</b></td></tr>
+      <tr><td>Email</td><td>harshgoyal0807@gmail.com</td></tr>
+      <tr><td>Contact</td><td>+91 70935 23468</td></tr>
+      <tr><td style="padding-top:8pt"></td><td></td></tr>
+      <tr><td>Project</td><td>Kohler Assist — unified enterprise AI agent for customers and the internal team (chat, phone and team console)</td></tr>
+      <tr><td>Deliverable</td><td>Prompt documentation (required submission artefact)</td></tr>
+      <tr><td>Scope</td><td>Complete development cycle: architecture, knowledge corpus, data model, build, evaluation, voice channel, operations layer</td></tr>
+      <tr><td>Method</td><td>Prompts are consolidated by phase and recorded in cleaned, professional wording that preserves the original intent; each is followed by the resulting work and the reasoning for the step</td></tr>
+      <tr><td>Data note</td><td>All customer, order and claim data in the prototype is fictional. Public documents are used for educational purposes only; internal policy documents were authored for the exercise and are marked fictional.</td></tr>
+    </table>
+  </div>
+  <div class="small">Document structure: 1 Purpose and method · 2 Executive summary · 3 Prompt log by phase (seven phases, 28 consolidated prompts) · 4 Decision register · 5 Outcome and measured results · Appendix: glossary</div>
+</section>
+
+<!-- ───────────────────────── 1. PURPOSE ───────────────────────── -->
+<h2>1. Purpose and method</h2>
+<p>This document is the prompt log for the Kohler Track 3 prototype. It serves two purposes: it is the transparency artefact the research program asks for, and it is the project's decision record — every architectural choice can be traced to the instruction that caused it and the reasoning that justified it.</p>
+<h4>How entries were recorded</h4>
+<ul>
+  <li><b>Consolidated, not verbatim.</b> Instructions were given conversationally over several days, often as short follow-ups. Related instructions are merged into one professional prompt per milestone so that the log reads as a specification, not a transcript. Intent is preserved exactly; wording is cleaned.</li>
+  <li><b>Three parts per prompt.</b> <i>Prompt</i> (what was asked) → <i>Work produced</i> (what the assistant built or decided) → <i>Rationale</i> (why the step was taken and what it protects).</li>
+  <li><b>Grouped by phase.</b> Seven phases follow the natural order of the work. Within a phase, prompts are in the order they were given.</li>
+  <li><b>Excluded.</b> Housekeeping requests about this document itself, résumé help, presentation-deck drafting and routine "continue / status" nudges are not logged; where such nudges shaped the work they are folded into the relevant milestone.</li>
+  <li><b>Security.</b> No credential, key or token appears in this document; secrets live only in ignored configuration files.</li>
+</ul>
+
+<!-- ───────────────────────── 2. EXECUTIVE SUMMARY ───────────────────────── -->
+<h2>2. Executive summary</h2>
+<p>The problem statement asked for an enterprise conversational agent over five knowledge bases (HR, finance, customer support, privacy, legal/compliance) with multi-turn reasoning and dynamic output formats (JSON schema, Excel, XML, ready-to-send email). The prompts in this log took that brief and shaped it into a system with four distinguishing properties:</p>
+<ul>
+  <li><b>Two audiences, two front doors, one brain.</b> External customers reach the agent on a real phone number (Sarvam AI voice agent, 11 Indian languages) or on the website; the internal team uses a knowledge chat and a ticket console. Both paths run the same Router → Retriever → Reasoner → Compiler pipeline against one knowledge base of 80 documents (57 public Kohler documents, 23 authored internal documents) and one customer record.</li>
+  <li><b>Data-sovereignty routing.</b> Every chunk carries a sensitivity label; access is enforced as a filter inside the vector database, and any answer that relies on restricted evidence is reasoned on a self-hosted model. An audit log makes this verifiable: zero restricted chunks reached a cloud model across 452 audited calls.</li>
+  <li><b>Evidence that shows its work.</b> Answers carry code-mapped citations; a version-conflict detector surfaces supersession — including two genuine revision chains found in public Kohler documents — with the vocabulary "superseded / review recommended / conflict", never "non-compliant".</li>
+  <li><b>Human-in-the-loop operations.</b> The agent prepares (claim intake, coverage check, photos, recommendation, drafts); a person decides in a shared ticket queue with the full case dossier and cited policy sources. Follow-ups by SMS and email and a shared memory let a customer move between phone and chat without repeating themselves.</li>
+</ul>
+<p>The prototype was built on a CPU laptop in roughly two weeks of prompted development, evaluated with a 56-question internal harness, and verified with live inbound and outbound phone calls.</p>
+
+<!-- ───────────────────────── 3. PROMPT LOG ───────────────────────── -->
+<h2 class="pb">3. Prompt log by phase</h2>
+<table class="toc">
+  <tr><td>Phase 1 — Problem framing and architecture</td><td>4 prompts</td></tr>
+  <tr><td>Phase 2 — Knowledge corpus: real documents, terms of use, OCR</td><td>5 prompts</td></tr>
+  <tr><td>Phase 3 — Data model: audiences, knowledge bases, regions, sensitivity</td><td>5 prompts</td></tr>
+  <tr><td>Phase 4 — Specification and build</td><td>4 prompts</td></tr>
+  <tr><td>Phase 5 — Evaluation and hardening</td><td>2 prompts</td></tr>
+  <tr><td>Phase 6 — Voice channel (Sarvam AI)</td><td>3 prompts</td></tr>
+  <tr><td>Phase 7 — Human-in-the-loop operations: claims, tickets, memory</td><td>5 prompts</td></tr>
+</table>
+
+<!-- ═══════════ PHASE 1 ═══════════ -->
+<h3>Phase 1 — Problem framing and architecture</h3>
+<p class="phase-intro">Establishing what to build before writing code: the architecture that would carry the 45 % innovation weight, the model strategy, and the routing rule that became the project's central idea.</p>
+
+<div class="prompt"><span class="lbl">Prompt 1.1 — Approach to the problem statement</span>Given the Track 3 brief — an enterprise-grade conversational agent over HR, finance, customer-support, privacy and legal/compliance knowledge, with multi-turn reasoning and on-demand output in JSON schema, Excel, XML and draft-email form, judged 45 % on approach and innovation — propose how to approach it, then review a detailed plan (Router → Retriever → Reasoner → Response Compiler, LangGraph orchestration, FastAPI, hybrid BM25 + BGE-M3 retrieval in Qdrant with a reranker, metadata-based access control, cross-domain reasoning, contradiction detection, structured intermediate representation, ~50-question evaluation) and confirm full clarity before any coding starts.</div>
+<p class="out"><b>Work produced.</b> Proposed and then validated a Router → Retriever → Reasoner → Compiler architecture in place of a plain document chatbot: domain routing with persona-based access, hybrid retrieval with citations and contradiction detection, and a separate formatting stage driven by a structured intermediate representation (<code>AnswerIR</code>). Checked the development machine (CPU only, 16 GB RAM) and flagged the decisions that are expensive to reverse: fix the <code>AnswerIR</code> schema first, run embedding models via ONNX on CPU, engineer contradiction detection from version metadata rather than prompting, enforce access control as a vector-database payload filter, and split scope into must-ship versus stretch.</p>
+<div class="why"><b>Rationale.</b> With innovation weighted at 45 %, the architecture itself had to be the differentiator, and the choices that shape the data model had to be made before code existed.</div>
+
+<div class="prompt"><span class="lbl">Prompt 1.2 — Model strategy and timeline</span>Use the OpenAI API for general knowledge and a local open-source model for confidential material — a mixture of both. Target one to two weeks. Propose the departments to cover, with document counts and file formats, and use fastembed ONNX as the ML runtime.</div>
+<p class="out"><b>Work produced.</b> Formalised the hybrid model strategy as <i>data-sovereignty routing</i>: chunks carry a sensitivity tier and the reasoning model is chosen per answer, with an on-device badge in the interface when the self-hosted model is used. Produced a department-by-department corpus plan and a ten-day build order. Re-read the problem statement and corrected four early deviations: sustainability is a criterion rather than a sixth knowledge base, internal-versus-external is an explicit access axis, XML is mandatory, and real public Kohler documents should replace synthetic ones wherever they exist.</p>
+<div class="why"><b>Rationale.</b> Turns the no-GPU, data-privacy constraint into the project's strongest feature and keeps the "unified platform over five knowledge bases" story exactly aligned with the brief.</div>
+
+<div class="prompt"><span class="lbl">Prompt 1.3 — Routing rule for two user groups</span>The application serves external customers and the internal team. Customer queries are processed on the OpenAI API; internal queries too, except where restricted information is involved, which must be handled by an open-source model. Restricted is the only tier that triggers the local model. Since documents are chunked and stored with metadata, route on the sensitivity of the retrieved chunks rather than on a query classifier.</div>
+<p class="out"><b>Work produced.</b> Settled the final rule after two refinements: a three-tier taxonomy (<code>public / internal / restricted</code>); retrieval runs fully on-device with the persona filter applied at the vector store; the language model is selected by inspecting the <code>sensitivity</code> of the retrieved chunks — any restricted chunk sends reasoning to the self-hosted model, otherwise to the cloud. A proposed query pre-classifier was dropped as redundant, making chunk metadata the single source of truth for both access control and model routing.</p>
+<div class="why"><b>Rationale.</b> The decision is driven by what was retrieved, not by who asked or how the question was phrased — a guarantee that can be audited rather than trusted.</div>
+
+<div class="prompt"><span class="lbl">Prompt 1.4 — Intent router as the first step</span>Confirm that every query first passes through an intent router (an LLM call) before retrieval.</div>
+<p class="out"><b>Work produced.</b> Confirmed and fixed the five-node pipeline. The router is the first node because it decides whether to retrieve at all: <i>retrieval question</i> (with knowledge bases, region and cross-domain sub-queries), <i>format conversion</i> and <i>follow-up</i> (reuse the last <code>AnswerIR</code>, no retrieval), <i>action request</i>, or <i>out of scope</i>. The router sees only the query and chat history — never document text — so it may run on the cloud by default with a switch to the local model.</p>
+<div class="why"><b>Rationale.</b> The multi-turn formatting flow (answer → JSON → Excel → email) depends on distinguishing conversions from new questions; this fixed the pipeline that everything else was built on.</div>
+
+<!-- ═══════════ PHASE 2 ═══════════ -->
+<h3>Phase 2 — Knowledge corpus: real documents, terms of use, OCR</h3>
+<p class="phase-intro">Building a defensible corpus: genuine public Kohler documents wherever they exist, sourced within the publisher's terms, made fully text-readable, with the remaining gaps specified precisely.</p>
+
+<div class="prompt"><span class="lbl">Prompt 2.1 — Locate real documents; include sustainability and Indian standards</span>Find the publicly available Kohler documents that can be downloaded. Include sustainability material. Add Indian standards (BIS certifications and ratings) alongside the product specification sheets, and cover both India-specific and global content, since the program builds global solutions for Kohler IT.</div>
+<p class="out"><b>Work produced.</b> Web-searched and HTTP-verified each source: supplier code of conduct, supplier terms, restricted-materials list, sustainability policy, Global Impact Report, WaterSense brochure, warranty documents, eleven product specification sheets, live privacy notices, and Kohler India pages (warranty policies, privacy policy, terms, installation and refund guidance). Placed sustainability as a cross-cutting tag and later a customer-facing knowledge base, with a derived product catalogue so water-savings reports are computed from data. Mapped the Indian certification landscape (BIS/ISI mark, IS 17953:2023 water-efficiency star rating, IS 2556, IS 8931) and made <code>region</code> a first-class metadata dimension with a standards matrix and unit normalisation.</p>
+<div class="why"><b>Rationale.</b> Real documents give authentic page-level citations; a region- and standards-aware agent demonstrates exactly the global-solutions competence the program targets.</div>
+
+<div class="prompt"><span class="lbl">Prompt 2.2 — Multi-revision documents and careful wording</span>The Global Supplier Quality Manual (quality-system requirements, certification preferences) is available — can it be used? And when the India privacy policy references the IT Act rather than the DPDP Act, does that imply non-compliance?</div>
+<p class="out"><b>Work produced.</b> Located four public revisions of the Supplier Quality Manual with verified differences — a genuine, unplanted test case for the contradiction detector. Clarified that no non-compliance is implied by the DPDP observation (rules phasing in; existing framework operative) and fixed the detector's vocabulary to <code>superseded / review_recommended / conflict</code>, never "non-compliant".</p>
+<div class="why"><b>Rationale.</b> Real revision chains are more convincing than planted conflicts, and the wording rule protects the project from making unsupported claims about the company.</div>
+
+<div class="prompt"><span class="lbl">Prompt 2.3 — Terms-of-use check and final source list</span>Do a final sweep of what is publicly available and check Kohler's website terms and privacy policy to confirm whether the material may be downloaded and used. Then produce the final permitted list, fetch everything allowed, and label every synthetic document as fictional and for educational purposes only.</div>
+<p class="out"><b>Work produced.</b> Read the governing terms directly (download for personal, non-commercial use with notices retained; no redistribution; the India site additionally prohibits scraping and data mining) and set five sourcing rules: raw documents kept out of version control, one request per document with a hashed manifest, no crawlers, an attribution notice, and a private demo. Built <code>data/sources.yaml</code> (per-document domain, region, audience, sensitivity, version metadata and fetch method), a fetch script and a licensing notice; downloaded all scriptable documents and listed the few that required a manual browser save. Confirmed that no public finance documents exist because the company is privately held.</p>
+<div class="why"><b>Rationale.</b> Establishes a defensible data-sourcing policy before any document is collected and fixes the real-versus-fictional boundary for each knowledge base.</div>
+
+<div class="prompt"><span class="lbl">Prompt 2.4 — Corpus validation and OCR</span>All remaining PDFs have been downloaded — scan the whole data folder and verify everything. Run OCR wherever needed so every document is usable as plain text; an LLM vision model may be used if local OCR proves insufficient.</div>
+<p class="out"><b>Work produced.</b> Scanned every file (opens, page count, text density, year, title). Discovered that the newly downloaded India warranty is a genuine newer revision (IN12-A → IN12-B; intelligent-toilet electronics coverage 3 → 5 years) — the second real version-conflict test case. Dropped empty client-rendered pages, renamed manual downloads to canonical names, registered new documents with version and supersedes metadata. Only two scanned India CSR reports lacked a text layer; added a local OCR script (RapidOCR on CPU, reading-order reconstruction, per-page markers, word-segmentation repair) producing text sidecars with 0.80 mean confidence; LLM vision kept as an optional fallback.</p>
+<div class="why"><b>Rationale.</b> The ingestion pipeline should never meet a broken, empty or duplicate file, and a local, deterministic OCR fits the data-sovereignty design.</div>
+
+<div class="prompt"><span class="lbl">Prompt 2.5 — Inventory and synthetic-document plan</span>List the documents already held and specify exactly what still has to be generated.</div>
+<p class="out"><b>Work produced.</b> Inventoried the real documents per knowledge base and identified the gaps (no finance material; thin HR and internal procedures). Specified the synthetic set with region, format, audience, sensitivity and demo role: HR, finance, legal, privacy and support documents, a derived product catalogue, a small restricted subset for the on-device path, and planted version conflicts alongside the two real ones.</p>
+<div class="why"><b>Rationale.</b> Targets generation at demonstrable needs rather than volume, against a known real baseline.</div>
+
+<!-- ═══════════ PHASE 3 ═══════════ -->
+<h3>Phase 3 — Data model: audiences, knowledge bases, regions, sensitivity</h3>
+<p class="phase-intro">Making the access and region rules simple enough to explain in one sentence each, then generating the fictional documents that complete the corpus.</p>
+
+<div class="prompt"><span class="lbl">Prompt 3.1 — Generate the synthetic documents</span>Create the synthetic documents now. Put a fiction banner at the top of every document stating it is for educational purposes only and not real data; ground each one in the original Kohler documents; store them in the same folders as the originals rather than a separate synthetic folder; and maintain a reference spreadsheet listing every document as original or created by us.</div>
+<p class="out"><b>Work produced.</b> Built a generator with one block model rendered to PDF, DOCX, XLSX and Markdown, each carrying the red fiction banner on every page or sheet plus document code, version, effective date, classification and audience. Authored the internal documents grounded in the real corpus (gift rules follow the real Supplier Code; support service levels quote the real 90-day return rule and warranty IN12-B; the catalogue reuses real specification figures), including the planted version conflicts (India Leave Policy v1.0 → v2.0; India travel-and-expense addendum v1.4 → v2.1). Produced a manifest and <code>docs/Document_Inventory.xlsx</code> (Original versus Created-by-us), and validated that every file opens, carries the banner and has substantive text.</p>
+<div class="why"><b>Rationale.</b> Completes the corpus as one mixed knowledge base with a clear, auditable real/fictional boundary.</div>
+
+<div class="prompt"><span class="lbl">Prompt 3.2 — Frontend choice and India-first region model</span>Use React for the frontend. Clarify how domains and regions are handled: the product is effectively built for India, but many documents are global; all demo queries will be for India. Which important data was US-specific? Make the product specification sheets and the WaterSense brochure global. India is the child; the common parent data lives in Global.</div>
+<p class="out"><b>Work produced.</b> Switched to React + Vite. Audited the US-tagged material — only the specification sheets and the WaterSense brochure carried engineering data of general value — and re-tagged them global. Formalised a region inheritance model: <code>global</code> is the parent, <code>IN</code> the child that inherits and overrides; queries resolve child-first then parent; an Indian document overriding a global one is an override, not a contradiction, so the detector fires only on the same policy key with a different version. Rewrote the demo script so every step runs as an India persona.</p>
+<div class="why"><b>Rationale.</b> Aligns the product with its actual audience while keeping global-solutions capability, and prevents false conflict flags between parent and child documents.</div>
+
+<div class="prompt"><span class="lbl">Prompt 3.3 — One shared internal knowledge base</span>The internal knowledge base must not be personalised by role; every internal document is available to the whole internal team.</div>
+<p class="out"><b>Work produced.</b> Collapsed access control to two levels — Customer (public only) and Internal team (public + internal + restricted) — removing role gating. <code>audience</code> became <code>public | internal</code> across the manifest and regenerated documents; <code>restricted</code> remained purely a model-routing tier.</p>
+<div class="why"><b>Rationale.</b> Matches how a shared internal knowledge base actually works, simplifies the interface to two modes, and keeps exactly two enforced controls: the external/internal boundary and sovereignty routing.</div>
+
+<div class="prompt"><span class="lbl">Prompt 3.4 — Internal-only versus customer-facing knowledge bases; two regions only</span>HR, finance and legal are entirely internal. Privacy, support and reference are what customers can see; rename reference to sustainability. Remove the US and UK regions and keep only Global and India, folding genuinely important US or UK material into Global. Confirm the internal team can access all external documents.</div>
+<p class="out"><b>Work produced.</b> Reorganised the corpus into two sides: internal-only (<code>hr</code>, <code>finance</code>, <code>legal</code>) and customer-facing (<code>privacy</code>, <code>support</code>, <code>sustainability</code>), moving customer terms into support so legal is purely internal. Reduced the region model to <code>global</code> and <code>IN</code>; parked US/UK documents outside the corpus, removed two US-only synthetic documents, and preserved the few important non-India facts inside global documents. Final corpus: 80 documents (57 real, 23 authored) in <code>&lt;kb&gt;/global</code> and <code>&lt;kb&gt;/in</code> folders; the internal team sees everything.</p>
+<div class="why"><b>Rationale.</b> Gives the knowledge base the same internal/external shape as the two user groups and removes an axis of complexity the India-first product did not need.</div>
+
+<div class="prompt"><span class="lbl">Prompt 3.5 — Restricted documents inside customer-facing folders</span>Why do restricted documents sit in the external folders? Decision: keep them there.</div>
+<p class="out"><b>Work produced.</b> Explained that internal procedures about customer-facing topics (breach playbook, retention schedule, escalation matrix, recall procedure, tone guide, internal warranty copy) live beside the public policy so a single lookup returns both the policy and the handling rule, while <code>sensitivity</code> hides them from customers. Made the rule explicit: a folder is a topic, not a permission.</p>
+<div class="why"><b>Rationale.</b> Removes the ambiguity between folder and permission without changing retrieval behaviour.</div>
+
+<!-- ═══════════ PHASE 4 ═══════════ -->
+<h3>Phase 4 — Specification and build</h3>
+<p class="phase-intro">Freezing the specification, defining the value of the intermediate representation, adopting a proven chunking scheme, and building the complete prototype on CPU hardware.</p>
+
+<div class="prompt"><span class="lbl">Prompt 4.1 — Freeze the specification</span>Before moving forward, finalise the technology stack, the approach to the problem statement, and the list of features and novelty. Document the agent's use cases and explain the AnswerIR.</div>
+<p class="out"><b>Work produced.</b> Wrote <code>docs/SPEC.md</code> as the single source of truth: requirement-to-solution mapping, the five-node pipeline with locked rules, the stack with rationale, chunk payload and persona filter tables, the <code>AnswerIR</code> schema, ranked novelty items, interface design for both modes, evaluation metrics with targets, the demo script and a build order. Explained <code>AnswerIR</code> — the validated, format-neutral structure of claims with claim-level sources, entities, conflicts with verdicts, access notes and summary — and catalogued eighteen use cases across customers and the internal team.</p>
+<div class="why"><b>Rationale.</b> Every decision frozen before implementation so code, interface and demo are built against one agreed specification.</div>
+
+<div class="prompt"><span class="lbl">Prompt 4.2 — Light and dark modes; an actions layer with a voice agent</span>Add light and dark modes. Add a simple "help with my product" flow: the customer enters order details and can either email the internal team or talk to an AI calling agent built on Sarvam AI that can act on the database and also handle orders and general queries. A Sarvam API key and a provisioned phone number are available; connect the Sarvam MCP servers so the agent can be built by instruction.</div>
+<p class="out"><b>Work produced.</b> Verified the platform capabilities (speech, dialogue model, voice-agent tooling, telephony, outbound calling, analytics) and configured the MCP servers with the key kept only in ignored configuration. Designed the actions layer: a "Help with my product" panel with email and voice channels; one shared brain in which the voice agent calls the same retrieval and the same guarded action tools (order lookup, warranty registration and check, claim, order, call-back) with an audit log; an inbox for the internal console; light/dark/system theming.</p>
+<div class="why"><b>Rationale.</b> Extends the agent from answering to acting, in the customer's language over a real phone line, while keeping one policy brain and the same evidence-and-audit discipline.</div>
+
+<div class="prompt"><span class="lbl">Prompt 4.3 — Chunking strategy</span>Adopt the chunking strategy used in the SecureGPT-v2 project.</div>
+<p class="out"><b>Work produced.</b> Adopted three chunk kinds — <code>prose</code> (section-based, small), <code>table_card</code> (one summary chunk per table) and <code>table_rows</code> (row groups with the header repeated and a "rows i–j of N" marker) — plus a context header on every chunk carrying knowledge base, region, document, version, effective date and section. Parsers emit structured tables from PDF, DOCX and XLSX; banner bands are stripped by position and tables are mapped to the heading above them. Result: about 1,500 well-formed chunks instead of roughly 1,950 fragments.</p>
+<div class="why"><b>Rationale.</b> Row-group chunks make spreadsheets and policy tables retrievable as units, and the header carries version context into the embedding for the detector and citations.</div>
+
+<div class="prompt"><span class="lbl">Prompt 4.4 — Build the complete prototype on CPU</span>Do not use rented GPUs; work on the CPU and develop the whole project through the night so that everything is finished by morning.</div>
+<p class="out"><b>Work produced.</b> Benchmarked and selected BGE-M3 via the official ONNX build with BM25 sparse vectors and a cross-encoder reranker, indexing demo-critical documents first; Ollama <code>qwen3:4b</code> for restricted reasoning with a capped evidence window. Built the full stack: ingestion, hybrid retrieval with persona and region filters and India precedence, the LangGraph pipeline (router → retrieve → gate → reasoner with version-conflict detection → compiler for text, schema-validated JSON, Excel, XML, table and email), streaming API, conversation memory for format conversions, the actions layer (SQLite CRM, guarded tools, audit log, voice endpoints), the React interface (customer and internal modes, pipeline strip, routing badge, conflict banner, citation panel, format switcher, help panel, inbox, themes), a 50-question evaluation harness with leak test, and run scripts. Verified end to end: paternity leave answered from v2.0 with the v1.0 supersession flagged; the salary-band question routed on-device; a claim opened from the help panel.</p>
+<div class="why"><b>Rationale.</b> Delivers the complete prototype on the hardware available while keeping every architectural commitment.</div>
+
+<!-- ═══════════ PHASE 5 ═══════════ -->
+<h3>Phase 5 — Evaluation and hardening</h3>
+<p class="phase-intro">Measuring the claims and making the scripted demo robust to model variance.</p>
+
+<div class="prompt"><span class="lbl">Prompt 5.1 — Run the evaluation</span>Bring the backend and frontend up, run the full evaluation on the CPU, report progress, and keep a rented GPU as the fallback for the on-device model if latency becomes a problem.</div>
+<p class="out"><b>Work produced.</b> Ran the 56-question suite: 51 passed on the first full run — retrieval hit 49/49, customer-public-only 20/20, access 3/3, LLM-judged faithfulness 0.97, zero restricted chunks in any cloud call. Fixed the misses deterministically: a guard so "draft an email / reply" is always a rendering request, never a CRM action; version conflicts surfaced whenever either document is among the strongest evidence, not only when the small local model cites it; one expectation relaxed where restricted evidence legitimately pulls an answer on-device. A targeted re-run of the affected questions passed 8/8. No GPU was needed.</p>
+<div class="why"><b>Rationale.</b> The evaluation proves the sovereignty claim and exposed two demo-critical slips; fixing them deterministically makes the demo robust.</div>
+
+<div class="prompt"><span class="lbl">Prompt 5.2 — Final checks before recording</span>Run final checks on every component and confirm the system is ready for the demo recording.</div>
+<p class="out"><b>Work produced.</b> Verified every service and walked the demo script through the API. Two content defects were found and fixed: the reasoner misread a flattened warranty table (quoting a generic three-year electronics row instead of the intelligent-toilet five-year row) — resolved by moving the reasoner to <code>gpt-5-mini</code> after a side-by-side comparison, with a table-reading rule; and the router fanned a warranty question out to a legal sub-query, diluting the evidence — resolved with a single-domain rule for support questions. All eight demo steps then passed.</p>
+<div class="why"><b>Rationale.</b> A scripted demo must not show a wrong number on stage; these were the last known sources of one.</div>
+
+<!-- ═══════════ PHASE 6 ═══════════ -->
+<h3>Phase 6 — Voice channel (Sarvam AI)</h3>
+<p class="phase-intro">Turning the phone into a full-capability front door: same knowledge, same rules, same record — in the caller's language.</p>
+
+<div class="prompt"><span class="lbl">Prompt 6.1 — Build the voice agent</span>The Sarvam voice-agents platform is connected — build the voice agent now.</div>
+<p class="out"><b>Work produced.</b> Created the agent (Hindi-first with language identification, product vocabulary, variables for call-back reason, phone and post-call summary), its HTTP tools into the backend (knowledge answer, order lookup, warranty check and registration, claim, order, call-back), a rule-based prompt (always use a tool; read back decisions; never discuss internal matters), and an inbound-plus-outbound deployment on the provisioned number with a call-end webhook into the inbox. Added a low-latency voice answer path (about eight seconds), model pre-warming, a webhook parser and the real outbound-call API. Documented two platform constraints discovered along the way: tool parameters created programmatically are static and must be switched to model-filled in the dashboard, and outbound calls need a platform API key.</p>
+<div class="why"><b>Rationale.</b> Completes the "one brain, two channels" promise: the phone reuses the same retrieval, rules and audit as the chat.</div>
+
+<div class="prompt"><span class="lbl">Prompt 6.2 — Languages, live test and dial-in</span>Commit the new version and place a test call. The agent must support every Indian language the platform offers, always answer in the language the caller is speaking, and translate English tool results naturally. Then verify that customers can dial in.</div>
+<p class="out"><b>Work produced.</b> Added greetings in all eleven supported languages, an explicit mirror-the-caller's-language rule and a parameter guide inside the prompt; moved the deployment to the new version and proved the chain over text, then placed a real outbound call. The 194-second call worked end to end — English answered in English, Hindi followed in Hinglish, order read back and confirmed, claim identifier spelled out, call-back placed, transcript and summary delivered by webhook. One defect (call-back sent to the number on the order rather than the caller's) was fixed. Inbound dialling was verified once the number was dialled in international format; a seven-minute inbound call loaded the caller's record from the caller ID, found the orders, completed a claim intake and delivered the recap.</p>
+<div class="why"><b>Rationale.</b> Turns the voice channel from "configured" into "demonstrated" on real telephony, in the caller's language.</div>
+
+<div class="prompt"><span class="lbl">Prompt 6.3 — Stable hostname and team requests from the phone</span>The temporary tunnel has failed; re-point the tools without redoing manual dashboard work. Then deploy the version that lets callers send requests to the team.</div>
+<p class="out"><b>Work produced.</b> Replaced the random-hostname tunnel with a fixed-subdomain tunnel under a restart loop, updated the webhook and configuration, and had the tool hosts edited in place so the manual parameter settings survived. Deployed the version with a team-request tool: the agent now confirms the caller's number before any order, call-back or team request, greets known callers by name in the first sentence, and a phone request was verified to create a product-query ticket for the right customer.</p>
+<div class="why"><b>Rationale.</b> A demo line must not depend on a hostname that changes on restart, and every request a caller makes must reach the same queue as a web request.</div>
+
+<!-- ═══════════ PHASE 7 ═══════════ -->
+<h3>Phase 7 — Human-in-the-loop operations: claims, tickets, memory</h3>
+<p class="phase-intro">Moving from automated decisions to automated preparation with human decisions, and making the two channels feel like one continuous conversation.</p>
+
+<div class="prompt"><span class="lbl">Prompt 7.1 — Never auto-approve; complete intake; follow-ups; memory; login</span>The agent must never approve a claim, not even under the Tier-1 limit — every decision is made by a person; the bot's job is to ask all relevant questions, request photos and collect what the team needs. After a call or chat the customer receives an email or text with the actions taken and next steps. Both channels need real memory: a customer asked to upload photos and call back must be recognised and the conversation must resume on either channel. Add a customer login (mobile number plus a placeholder password) so questions work without signing in but every action requires it.</div>
+<p class="out"><b>Work produced.</b> Claims are filed as <i>pending</i> with a structured seven-field intake and a system recommendation for the reviewer; photos attach from the website or from a token-scoped upload page sent by SMS. A customer-memory record per mobile number is written after every action, upload, decision and call and read by both channels — the voice agent loads it at call start and resumes; the chat answers status questions from it without a language model. Follow-up SMS and email (simulated outbox, visible to the team and under the customer's "My messages") go out after calls, claims, uploads and decisions. Customer login by mobile number with a demo password; identity comes from the session, never the request.</p>
+<div class="why"><b>Rationale.</b> The compliance posture a real customer-care team needs — preparation automated, decisions human — while closing the follow-up loop across channels.</div>
+
+<div class="prompt"><span class="lbl">Prompt 7.2 — Demo customers, an internal team and a shared ticket queue</span>Seed two named customers (one with older registered purchases, one with a recent unregistered purchase) and five internal employees. Every request to the internal team must be visible to the whole team; an employee picks a ticket and works it, with a dashboard over all tickets and full history. Any request to the team — including buying a product or asking for product information — must capture the customer's phone number.</div>
+<p class="out"><b>Work produced.</b> Seeded the customers and a five-person team with roles and tiers. Built a ticket engine: every claim, email, call-back, product query and order becomes a ticket in one shared queue; employees sign in, take tickets, add notes, reply to the customer (SMS + email, written into the customer memory), decide claims from the ticket and resolve; every step is an event and customer replies reopen the ticket. Added a tickets dashboard with status counters, breakdowns, filters, search, reassignment, priority and an SLA-age indicator; on the customer side an "Ask the team" request type and a "My requests" view. Requests, orders and team emails require the signed-in number.</p>
+<div class="why"><b>Rationale.</b> Turns the inbox into an operations workflow the team can actually run, with the customer's identity attached to every request.</div>
+
+<div class="prompt"><span class="lbl">Prompt 7.3 — Check the policy from inside a ticket</span>Let a team member, from inside a ticket, ask the internal knowledge base about that order, read the policy sources, and only then act. Questions and answers should run as a conversation so follow-ups keep context, and the reply to the customer should be drafted from the whole thread.</div>
+<p class="out"><b>Work produced.</b> Added a threaded policy check inside each ticket: the specialist's question runs through the full internal pipeline with the case facts attached; the answer, version notes and expandable cited sources are shown and every turn is saved to the ticket history (and restored on reopening). A "draft reply from this thread" action writes the customer reply from all turns — on the self-hosted model whenever any turn touched restricted evidence. This rule exposed a labelling error (an everyday escalation matrix had been generated as restricted); it was reclassified, regenerated and re-indexed. Verified on a real claim: cited the India warranty policy and the escalation matrix and flagged the superseded revision.</p>
+<div class="why"><b>Rationale.</b> Evidence from the knowledge base is one click from the decision, and the evidence trail stays on the ticket.</div>
+
+<div class="prompt"><span class="lbl">Prompt 7.4 — Complete case context, focused drafts</span>When drafting, the assistant must have access to everything about the case — the request, details gathered on the call, the customer's history — but the message must be about the current issue on the ticket; past orders and history are reference only. A drafting request typed into the policy conversation should produce the draft there.</div>
+<p class="out"><b>Work produced.</b> Built a case dossier per ticket — request, claim with coverage window and intake, photos, recommendation, customer memory, recent call transcripts and ticket history — split into "current case" and "background (reference only)". Drafting receives the whole dossier, every research turn and the specialist's instruction and is told to write about the current issue only; policy questions receive a compact brief. Drafting requests typed into the thread are recognised and answered with the draft as a turn; a misrouting of such requests to the customer action path was fixed. The case view shows "what the assistant knows" in the two groups.</p>
+<div class="why"><b>Rationale.</b> Drafts are only trustworthy when they rest on the complete case yet stay on topic — and the team can see exactly what the assistant saw.</div>
+
+<div class="prompt"><span class="lbl">Prompt 7.5 — Console structure and naming</span>The internal console should be a single "Tickets" area that keeps the existing inbox layout, with clickable summary counters; the queue must show its tickets after a restart; and the customer view must never expose the internal-team switch.</div>
+<p class="out"><b>Work produced.</b> Unified the console as "Tickets" (queue, claims, emails, call-backs, call transcripts, audit log) with clickable counters; opening a ticket shows a focused page with Case, Policy check and History tabs. The empty-queue defect was a login session lost on backend restart — sessions were moved to the database with an automatic re-prompt. The header shows only the current mode; changing mode goes through the landing page.</p>
+<div class="why"><b>Rationale.</b> Readability for the reviewer and a clean separation between what customers and employees can see.</div>
+
+<!-- ───────────────────────── 4. DECISION REGISTER ───────────────────────── -->
+<h2 class="pb">4. Decision register</h2>
+<p>The decisions that shaped the system, in the order they were locked. Each traces to a prompt in Section 3.</p>
+<table>
+  <tr><th style="width:38pt">#</th><th>Decision</th><th style="width:60pt">Prompt</th></tr>
+  <tr><td>D1</td><td>Architecture: Intent Router → local hybrid Retrieval (domain, persona, region filters) → sensitivity check on retrieved chunks → Reasoner with contradiction detector → Response Compiler; LangGraph orchestration on FastAPI.</td><td>1.1, 1.4</td></tr>
+  <tr><td>D2</td><td><code>AnswerIR</code> is the contract between reasoning and rendering; output formats — text, schema-validated JSON, Excel, XML, Markdown table, email — are all must-ship and reuse the same IR across turns.</td><td>1.1, 4.1</td></tr>
+  <tr><td>D3</td><td>Data-sovereignty routing: three sensitivity tiers on every chunk; any <code>restricted</code> chunk in the evidence sends reasoning (and any draft derived from it) to the self-hosted model; otherwise the cloud model. No query pre-classifier; chunk metadata is the single source of truth.</td><td>1.2, 1.3</td></tr>
+  <tr><td>D4</td><td>Two audiences and two access levels enforced as a vector-database payload filter: Customer → public only; Internal team → all documents. No role-based gating inside the internal team.</td><td>1.3, 3.3</td></tr>
+  <tr><td>D5</td><td>Six knowledge bases on two sides: internal-only (HR, Finance, Legal) and customer-facing (Privacy, Support, Sustainability). A folder is a topic, not a permission; sensitivity decides per-document visibility.</td><td>3.4, 3.5</td></tr>
+  <tr><td>D6</td><td>Region model: <code>global</code> is the parent, <code>IN</code> the child that inherits and overrides; India documents take precedence; US/UK material excluded except where folded into global documents.</td><td>3.2, 3.4</td></tr>
+  <tr><td>D7</td><td>Corpus: real public Kohler documents (57) plus authored internal documents (23) marked fictional with a banner; sourced within the publisher's terms, one request per document, never redistributed, raw files kept out of version control.</td><td>2.1–2.5, 3.1</td></tr>
+  <tr><td>D8</td><td>Contradiction detection is engineered (same policy key, numeric version ordering) with the model only explaining differences; vocabulary <code>superseded / review_recommended / conflict</code>, never "non-compliant". Two genuine revision chains from public documents serve as test cases.</td><td>2.2, 2.4</td></tr>
+  <tr><td>D9</td><td>Retrieval stack: BGE-M3 (official ONNX) dense + BM25 sparse in Qdrant with RRF fusion and a cross-encoder reranker; SecureGPT-v2 chunking (prose, table card, table rows, context header); all on CPU.</td><td>1.2, 4.3, 4.4</td></tr>
+  <tr><td>D10</td><td>Models: <code>gpt-5-mini</code> for routing and reasoning (moved from <code>gpt-4.1</code> after it misread a flattened warranty table), <code>gpt-4.1-mini</code> for the voice fast path and the judge, Ollama <code>qwen3:4b</code> on-device.</td><td>4.4, 5.2</td></tr>
+  <tr><td>D11</td><td>Voice channel: Sarvam AI voice agent on a real number, 11 Indian languages with identification, tools calling the same backend, caller memory loaded at call start, call-end webhook into the team queue, outbound "call me now"; deployed and verified with live calls.</td><td>4.2, 6.1–6.3</td></tr>
+  <tr><td>D12</td><td>Human-in-the-loop: the system never approves or declines a claim; it runs a structured intake, requests photos, computes a recommendation, and a person decides in the shared ticket queue.</td><td>7.1, 7.2</td></tr>
+  <tr><td>D13</td><td>Identity and memory: customer sign-in by mobile number (placeholder password in the prototype), required for actions but not for questions; one customer-memory record per number shared by phone, chat, help panel and tickets; SMS and email follow-ups after every call, claim, upload, reply and decision.</td><td>7.1, 7.2</td></tr>
+  <tr><td>D14</td><td>Ticket operations: one shared queue for claims, emails, call-backs, product queries and orders; take, note, reply, decide, resolve with full event history; in-ticket policy check with a case dossier (current case versus background) and cited sources; drafts written from the whole research thread.</td><td>7.2–7.5</td></tr>
+</table>
+
+<!-- ───────────────────────── 5. OUTCOME ───────────────────────── -->
+<h2>5. Outcome and measured results</h2>
+<h4>What was delivered</h4>
+<ul>
+  <li>A working prototype on a CPU laptop: knowledge base of 80 documents (1,540 chunks) across six knowledge bases; Router → Retriever → Reasoner → Compiler pipeline with a sensitivity gate; customer web app (chat, help panel, sign-in), internal web console (knowledge chat, Tickets); SQLite actions layer; customer memory; simulated notifications.</li>
+  <li>A Sarvam AI voice agent on a real Indian number with eight backend tools, 11 languages, memory at call start and a call-end webhook — verified with live inbound and outbound calls.</li>
+  <li>Specification, demo checklist, voice-agent guide, document inventory, evaluation harness and this prompt log.</li>
+</ul>
+<h4>Measured on the prototype (internal 56-question evaluation — 20 customer, 36 internal — and live calls; not an independent benchmark)</h4>
+<div class="kpi">
+  <div>• Leak test: <b>0 / 452</b> restricted chunks sent to any cloud model (all audited calls, voice and ticket checks included)</div>
+  <div>• Customer questions retrieving public chunks only: <b>20 / 20</b> (structural — filter enforced in the vector database)</div>
+  <div>• Retrieval hit (expected document in the cited evidence): <b>49 / 49</b></div>
+  <div>• Faithfulness, LLM-judged over 43 answers: <b>0.97</b></div>
+  <div>• Version-conflict pairs surfaced: <b>7 / 7</b> after fixes (first full run 6 / 7)</div>
+  <div>• Format conversion (JSON, Excel, XML, email) from an existing answer: <b>2–4 s</b></div>
+  <div>• Cloud answers: <b>13–25 s</b>; on-device answers: <b>≈ 2 min</b> (4B model on CPU; seconds on a GPU)</div>
+  <div>• Voice: policy answer on a call <b>≈ 8 s</b>; a <b>7-minute</b> inbound call completed a full claim intake with memory loaded from the caller ID</div>
+</div>
+<div class="note">Caveats stated deliberately: the question set and expectations were written by the project team against its own corpus; faithfulness is scored by a model, not by people; a single-question JSON-validity figure was withdrawn from headline use. The two guarantees the design stands on — no restricted content to the cloud, no internal content to customers — are enforced by architecture rather than measured by sampling.</div>
+
+<!-- ───────────────────────── APPENDIX ───────────────────────── -->
+<h2>Appendix — Glossary</h2>
+<table>
+  <tr><th style="width:130pt">Term</th><th>Meaning in this project</th></tr>
+  <tr><td>AnswerIR</td><td>Answer Intermediate Representation — the validated, format-neutral structure produced by the reasoner (claims with sources, entities, conflicts with verdicts, access notes, summary) that the compiler renders into any output format.</td></tr>
+  <tr><td>Persona</td><td>Who is asking: <i>customer</i> (external) or <i>internal</i> (employee / Customer Care). Travels with every request and is applied as a filter inside the vector database.</td></tr>
+  <tr><td>Sensitivity tier</td><td>Label on every chunk: <code>public</code>, <code>internal</code> or <code>restricted</code>. Public and internal govern access; restricted additionally forces on-device reasoning.</td></tr>
+  <tr><td>Sensitivity gate</td><td>The pipeline step that inspects the retrieved evidence and selects the cloud or the self-hosted model.</td></tr>
+  <tr><td>Leak test</td><td>Audit-log check counting restricted chunks that appeared in any cloud-model request; the design target is zero.</td></tr>
+  <tr><td>Version conflict</td><td>Two documents with the same policy key and different versions; the newer one is followed and the relationship is shown as superseded, review recommended or conflict.</td></tr>
+  <tr><td>Region model</td><td><code>global</code> parent, <code>IN</code> child; the child inherits and overrides.</td></tr>
+  <tr><td>Case dossier</td><td>Everything known about a ticket — request, claim and coverage, photos, memory, call transcripts, history — split into current case and background.</td></tr>
+  <tr><td>Human-in-the-loop</td><td>The agent prepares (intake, checks, recommendation, drafts); a person makes every claim decision.</td></tr>
+</table>
+<p class="small" style="margin-top:14pt">End of document.</p>
+</body></html>

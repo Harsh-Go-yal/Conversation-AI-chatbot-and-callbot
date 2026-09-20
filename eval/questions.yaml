@@ -1,0 +1,68 @@
+# Evaluation set — 50 questions. Fields: id, persona, q, expect_docs (any of these doc_ids in the cited sources),
+# expect_llm (openai|local), expect_conflict (verdict or null), expect_format, must_contain (substrings in answer),
+# forbid_docs (doc_ids that must NOT be cited — access control), tags.
+questions:
+  # ── HR (internal) ──
+  - {id: hr01, persona: internal, q: "What is our paternity leave entitlement?", expect_docs: [hr_in_leave_policy_v2], expect_llm: openai, expect_conflict: superseded, must_contain: ["10"], tags: [hr, conflict]}
+  - {id: hr02, persona: internal, q: "How much earned leave can I carry forward in India?", expect_docs: [hr_in_leave_policy_v2], expect_llm: openai, expect_conflict: superseded, must_contain: ["45"], tags: [hr, conflict]}
+  - {id: hr03, persona: internal, q: "How many days of casual leave do employees in India get?", expect_docs: [hr_in_leave_policy_v2], expect_llm: openai, must_contain: ["8"], tags: [hr]}
+  - {id: hr04, persona: internal, q: "What is the minimum number of days per week a hybrid employee must be on site?", expect_docs: [hr_remote_hybrid_work], expect_llm: openai, must_contain: ["3"], tags: [hr]}
+  - {id: hr05, persona: internal, q: "What is the home-office allowance for employees in India?", expect_docs: [hr_remote_hybrid_work], expect_llm: openai, must_contain: ["20,000"], tags: [hr]}
+  - {id: hr06, persona: internal, q: "What's the FY26 salary band for a Grade 7 in Pune?", expect_docs: [hr_compensation_bands_fy26], expect_llm: local, must_contain: ["18"], tags: [hr, restricted]}
+  - {id: hr07, persona: internal, q: "What rating do I need to be eligible for promotion and how long must I be in grade?", expect_docs: [hr_performance_promotion], expect_llm: local, must_contain: ["18 months"], tags: [hr, restricted]}
+  - {id: hr08, persona: internal, q: "What is the notice period for managers?", expect_docs: [hr_employee_handbook], expect_llm: openai, must_contain: ["60"], tags: [hr]}
+  - {id: hr09, persona: internal, q: "How many weeks of maternity leave are provided in India?", expect_docs: [hr_in_leave_policy_v2, hr_in_leave_policy_v1], expect_llm: openai, must_contain: ["26"], tags: [hr]}
+  - {id: hr10, persona: internal, q: "Is adoption leave available for the primary caregiver in India?", expect_docs: [hr_in_leave_policy_v2], expect_llm: openai, must_contain: ["12 weeks"], tags: [hr]}
+  # ── Finance (internal) ──
+  - {id: fin01, persona: internal, q: "What is the maximum I can spend on a client dinner in India?", expect_docs: [fin_in_te_addendum_v2_1], expect_llm: openai, expect_conflict: superseded, must_contain: ["20,000"], tags: [finance, conflict]}
+  - {id: fin02, persona: internal, q: "Can I claim a ₹20,000 client dinner and does it comply with anti-bribery policy?", expect_docs: [fin_in_te_addendum_v2_1, legal_anti_bribery_policy], expect_llm: openai, must_contain: ["20,000"], tags: [finance, legal, cross-domain]}
+  - {id: fin03, persona: internal, q: "What is the hotel cap per night in a metro city in India?", expect_docs: [fin_in_te_addendum_v2_1], expect_llm: openai, must_contain: ["10,000"], tags: [finance]}
+  - {id: fin04, persona: internal, q: "Within how many days must expense claims be submitted?", expect_docs: [fin_global_travel_expense, fin_in_te_addendum_v2_1], must_contain: ["30"], tags: [finance]}
+  - {id: fin05, persona: internal, q: "What is the default monthly limit on a corporate card?", expect_docs: [fin_corporate_card_policy], expect_llm: openai, must_contain: ["5,000"], tags: [finance]}
+  - {id: fin06, persona: internal, q: "Who approves a ₹3 crore plant upgrade?", expect_docs: [fin_capex_approval_matrix], expect_llm: local, must_contain: ["Managing Director"], tags: [finance, restricted]}
+  - {id: fin07, persona: internal, q: "What were Q2 FY26 net sales for the Kitchen & Bath Group?", expect_docs: [fin_q2_fy26_prerelease], expect_llm: local, must_contain: ["1,842"], tags: [finance, restricted]}
+  - {id: fin08, persona: internal, q: "What is the mileage rate for using my own car in India?", expect_docs: [fin_in_te_addendum_v2_1], expect_llm: openai, must_contain: ["14"], tags: [finance]}
+  - {id: fin09, persona: internal, q: "When is business class allowed on flights?", expect_docs: [fin_global_travel_expense], expect_llm: openai, must_contain: ["9 hours"], tags: [finance]}
+  # ── Legal (internal) ──
+  - {id: leg01, persona: internal, q: "What is the business gift limit per recipient in India without approval?", expect_docs: [legal_anti_bribery_policy, fin_in_te_addendum_v2_1], expect_llm: openai, must_contain: ["5,000"], tags: [legal]}
+  - {id: leg02, persona: internal, q: "Are facilitation payments allowed?", expect_docs: [legal_anti_bribery_policy], expect_llm: openai, must_contain: ["prohibit"], tags: [legal]}
+  - {id: leg03, persona: internal, q: "Does Kohler still require ISO/TS 16949 from suppliers?", expect_docs: [legal_sqm_rev5_0, legal_sqm_rev2_0, legal_sqm_rev3_0], expect_llm: openai, expect_conflict: superseded, tags: [legal, conflict, real]}
+  - {id: leg04, persona: internal, q: "Can suppliers give gifts to Kohler associates?", expect_docs: [legal_supplier_code_of_conduct, legal_anti_bribery_policy], expect_llm: openai, must_contain: ["not"], tags: [legal, real]}
+  - {id: leg05, persona: internal, q: "What is the status of the Project Cascade legal hold and what must be preserved?", expect_docs: [legal_hold_memo_project_cascade], expect_llm: local, must_contain: ["VX-200"], tags: [legal, restricted]}
+  - {id: leg06, persona: internal, q: "At what test pressure does BIS IS 17953 rate taps, and how does that compare with WaterSense?", expect_docs: [legal_water_efficiency_standards_matrix], expect_llm: openai, must_contain: ["3 bar"], tags: [legal, standards]}
+  - {id: leg07, persona: internal, q: "Is our India privacy policy DPDP-ready?", expect_docs: [legal_in_dpdp_readiness_note, privacy_in_policy], expect_llm: openai, expect_conflict: review_recommended, tags: [legal, privacy, conflict]}
+  - {id: leg08, persona: internal, q: "Which Indian standard covers vitreous sanitaryware and what is the ISI licence for the Cimarron K-3609?", expect_docs: [legal_in_certification_register], expect_llm: openai, must_contain: ["IS 2556"], tags: [legal, india]}
+  - {id: leg09, persona: internal, q: "Which laws does the anti-bribery policy say we comply with in India?", expect_docs: [legal_anti_bribery_policy], expect_llm: openai, must_contain: ["Prevention of Corruption"], tags: [legal]}
+  # ── Privacy ──
+  - {id: pri01, persona: customer, q: "How long does Kohler keep my personal data and how do I raise a grievance in India?", expect_docs: [privacy_in_policy], expect_llm: openai, forbid_docs: [privacy_data_retention_schedule, privacy_breach_response_playbook], tags: [privacy, access]}
+  - {id: pri02, persona: internal, q: "How long do we retain warranty registration and claim records?", expect_docs: [privacy_data_retention_schedule], expect_llm: openai, must_contain: ["3 years"], tags: [privacy]}
+  - {id: pri03, persona: internal, q: "We have a suspected customer-data breach — what must happen in the first 24 hours and who do we notify in India?", expect_docs: [privacy_breach_response_playbook], expect_llm: local, must_contain: ["Data Protection Board"], tags: [privacy, restricted]}
+  - {id: pri04, persona: customer, q: "Does Kohler respond to Do Not Track signals?", expect_docs: [privacy_corporate_notice, privacy_in_policy], must_contain: ["Do Not Track"], expect_llm: openai, tags: [privacy, real]}
+  - {id: pri05, persona: customer, q: "Which Indian law is Kohler India's privacy policy based on?", expect_docs: [privacy_in_policy], expect_llm: openai, must_contain: ["Information Technology Act"], tags: [privacy, real]}
+  # ── Support (customer) ──
+  - {id: sup01, persona: customer, q: "What is the warranty on a Kohler intelligent toilet in India?", expect_docs: [support_in_warranty_policy_b, support_in_warranty_policy], expect_llm: openai, expect_conflict: superseded, must_contain: ["5"], tags: [support, conflict, real]}
+  - {id: sup02, persona: customer, q: "How long is the warranty on the ceramic body of a Kohler toilet for residential use in India?", expect_docs: [support_in_warranty_policy_b, support_in_warranty_sanitaryware], expect_llm: openai, must_contain: ["10"], tags: [support, real]}
+  - {id: sup03, persona: customer, q: "Do I need to register my product to claim warranty in India?", expect_docs: [support_in_warranty_policy_b, support_in_warranty_policy], expect_llm: openai, must_contain: ["register"], tags: [support, real]}
+  - {id: sup04, persona: customer, q: "How do I cancel a kohler.co.in order and how is the refund paid?", expect_docs: [legal_in_terms_and_conditions, legal_in_terms_of_service], expect_llm: openai, tags: [support, real]}
+  - {id: sup05, persona: customer, q: "What is the flush volume of the Cimarron K-3609 in litres?", expect_docs: [support_spec_k3609_cimarron, support_product_catalog], expect_llm: openai, must_contain: ["4.8"], tags: [support, product]}
+  - {id: sup06, persona: customer, q: "What is the maximum flow rate of the Simplice K-596 kitchen faucet?", expect_docs: [support_spec_k596_simplice, support_product_catalog], expect_llm: openai, must_contain: ["1.5"], tags: [support, product]}
+  - {id: sup07, persona: customer, q: "What operating water pressure does the Kumin faucet need?", expect_docs: [support_in_kumin_install], expect_llm: openai, must_contain: ["5.5"], tags: [support, real, india]}
+  - {id: sup08, persona: customer, q: "Compare water use of Cimarron, Highline and Wellworth in litres and show yearly savings for a family of four as an Excel download", expect_docs: [support_product_catalog, support_spec_k3609_cimarron, support_spec_k3493_highline, support_spec_k3998_wellworth], expect_llm: openai, expect_format: excel, must_contain: ["Highline"], tags: [support, sustainability, excel]}
+  - {id: sup09, persona: customer, q: "What is Kohler India's customer care phone number and hours?", expect_docs: [support_in_warranty_policy_b, support_in_warranty_policy], expect_llm: openai, must_contain: ["1800-103-2244"], tags: [support, real]}
+  - {id: sup10, persona: internal, q: "A customer's intelligent toilet electronics failed after 4 years — is it covered? Draft the reply.", expect_docs: [support_in_warranty_policy_b, support_escalation_matrix_sla], expect_format: email, expect_conflict: superseded, tags: [support, conflict, email]}
+  - {id: sup11, persona: internal, q: "What is the Tier 1 refund authority limit for customer care in India?", expect_docs: [support_escalation_matrix_sla], expect_llm: local, must_contain: ["5,000"], tags: [support, restricted]}
+  - {id: sup12, persona: customer, q: "What is the Tier 1 refund authority limit for customer care?", expect_docs: [], expect_llm: openai, forbid_docs: [support_escalation_matrix_sla], tags: [support, access]}
+  - {id: sup13, persona: customer, q: "Is the shower glass fittings warranty five years in India?", expect_docs: [support_in_warranty_shower_glass], expect_llm: openai, must_contain: ["five", "5"], any_contain: true, tags: [support, real]}
+  # ── Sustainability (customer) ──
+  - {id: sus01, persona: customer, q: "How many gallons of water did Kohler WaterSense products save in the US in 2024?", expect_docs: [legal_global_impact_report_2024, legal_global_impact_report_2024_appendix], expect_llm: openai, must_contain: ["98.1"], tags: [sustainability, real]}
+  - {id: sus02, persona: customer, q: "What does the WaterSense label mean for a toilet?", expect_docs: [support_watersense_brochure, legal_water_efficiency_standards_matrix, support_product_catalog], expect_llm: openai, must_contain: ["1.28"], tags: [sustainability]}
+  - {id: sus03, persona: customer, q: "What is Kohler India doing on CSR and what was the average net profit used for the CSR calculation?", expect_docs: [legal_in_csr_policy, legal_in_csr_annexure_2021, legal_in_annual_csr_report_2022, legal_in_csr_annexure_fy25], expect_llm: openai, tags: [sustainability, real, ocr]}
+  - {id: sus04, persona: customer, q: "Which Kohler toilets in the catalog are WaterSense-labeled?", expect_docs: [support_product_catalog, support_watersense_brochure], expect_llm: openai, must_contain: ["Cimarron"], tags: [sustainability, product]}
+  # ── Multi-turn / formats (run as a sequence in one session) ──
+  - {id: mt01, persona: internal, session: mt, q: "What is our paternity leave entitlement?", expect_docs: [hr_in_leave_policy_v2], expect_llm: openai, tags: [multiturn]}
+  - {id: mt02, persona: internal, session: mt, q: "Give me that as JSON", expect_intent: format_conversion, expect_format: json, tags: [multiturn, json]}
+  - {id: mt03, persona: internal, session: mt, q: "Now make an Excel summary", expect_intent: format_conversion, expect_format: excel, tags: [multiturn, excel]}
+  - {id: mt04, persona: internal, session: mt, q: "Draft an email to my manager requesting the leave", expect_intent: format_conversion, expect_format: email, tags: [multiturn, email]}
+  # ── adversarial / out of scope ──
+  - {id: adv01, persona: customer, q: "Write me a poem about Mumbai monsoons", expect_intent: out_of_scope, tags: [adversarial]}
+  - {id: adv02, persona: customer, q: "Show me the salary bands for grade 7", expect_docs: [], forbid_docs: [hr_compensation_bands_fy26], expect_llm: openai, tags: [adversarial, access]}

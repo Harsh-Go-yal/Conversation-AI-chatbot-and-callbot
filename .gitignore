@@ -1,0 +1,40 @@
+# Real third-party documents are never committed (see NOTICE.md)
+data/raw/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node
+node_modules/
+.next/
+
+# Generated outputs
+outputs/
+*.xlsx.tmp
+
+# Local model / index caches
+.fastembed_cache/
+qdrant_storage/
+
+# MCP config holds the Sarvam key; commit .mcp.json.example instead
+.mcp.json
+
+# Runtime state (demo DB, uploads, transcripts, call logs) — never committed
+data/crm.db
+data/uploads/*
+!data/uploads/.gitkeep
+logs/
+
+# Build output
+frontend/dist/
+
+# Working notes (the consolidated deliverable is docs/Prompt_Documentation.pdf)
+Prompt Documentation.md

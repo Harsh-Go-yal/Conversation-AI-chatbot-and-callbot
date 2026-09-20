@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "sarvam": {
+      "command": "uvx",
+      "args": ["sarvam-mcp"],
+      "env": { "SARVAM_API_KEY": "<YOUR_SARVAM_API_KEY>" }
+    },
+    "sarvam-voice-agents": {
+      "type": "http",
+      "url": "https://mcp.sarvam.ai/voice-agents"
+    }
+  }
+}

@@ -1,0 +1,135 @@
+{
+ "summary": {
+  "n": 3,
+  "passed": 1,
+  "retrieval_hit": [
+   1.0,
+   3
+  ],
+  "routing": [
+   0.5,
+   2
+  ],
+  "conflict_recall": [
+   1.0,
+   1
+  ],
+  "access": [
+   null,
+   0
+  ],
+  "customer_public_only": [
+   null,
+   0
+  ],
+  "answer_hit": [
+   0.0,
+   2
+  ],
+  "intent": [
+   null,
+   0
+  ],
+  "format": [
+   1.0,
+   1
+  ],
+  "json_valid": [
+   null,
+   0
+  ],
+  "faithfulness_mean": null,
+  "faithfulness_n": 0,
+  "leak_restricted_to_cloud": 0,
+  "openai_calls": 5,
+  "local_calls": 2,
+  "latency_p50_s": 123.3,
+  "latency_p95_s": 123.3,
+  "stage_median_ms": {
+   "router": 3640,
+   "retrieval": 10373,
+   "conflicts": 1783,
+   "reasoner": 104169
+  }
+ },
+ "results": [
+  {
+   "id": "hr06",
+   "persona": "internal",
+   "q": "What's the FY26 salary band for a Grade 7 in Pune?",
+   "seconds": 123.3,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "local",
+   "cited": [
+    "hr_compensation_bands_fy26"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 3672,
+    "retrieval": 13660,
+    "conflicts": 1783,
+    "reasoner": 104169
+   },
+   "checks": {
+    "retrieval_hit": true,
+    "routing": true,
+    "answer_hit": false
+   },
+   "pass": false
+  },
+  {
+   "id": "pri02",
+   "persona": "internal",
+   "q": "How long do we retain warranty registration and claim records?",
+   "seconds": 149.5,
+   "intent": "retrieval_question",
+   "format": "text",
+   "llm": "local",
+   "cited": [
+    "legal_hold_memo_project_cascade",
+    "privacy_data_retention_schedule"
+   ],
+   "conflicts": [],
+   "timings": {
+    "router": 2778,
+    "retrieval": 9102,
+    "conflicts": 2753,
+    "reasoner": 134818
+   },
+   "checks": {
+    "retrieval_hit": true,
+    "routing": false,
+    "answer_hit": false
+   },
+   "pass": false
+  },
+  {
+   "id": "sup10",
+   "persona": "internal",
+   "q": "A customer's intelligent toilet electronics failed after 4 years \u2014 is it covered? Draft the reply.",
+   "seconds": 23.8,
+   "intent": "retrieval_question",
+   "format": "email",
+   "llm": "openai",
+   "cited": [
+    "support_in_warranty_policy_b"
+   ],
+   "conflicts": [
+    "superseded"
+   ],
+   "timings": {
+    "router": 3640,
+    "retrieval": 10373,
+    "conflicts": 489,
+    "reasoner": 6730
+   },
+   "checks": {
+    "retrieval_hit": true,
+    "conflict": true,
+    "format": true
+   },
+   "pass": true
+  }
+ ]
+}

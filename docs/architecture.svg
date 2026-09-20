@@ -1,0 +1,199 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" font-family="Segoe UI, Inter, Arial, sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4b5563"/>
+    </marker>
+    <marker id="arrBlue" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrRed" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/>
+    </marker>
+    <style>
+      .t { fill:#111827; }
+      .s { fill:#4b5563; font-size:15px; }
+      .h { font-size:22px; font-weight:600; }
+      .box { rx:14; ry:14; stroke-width:1.5; }
+      .lane { rx:18; ry:18; }
+      .flow { fill:none; stroke:#4b5563; stroke-width:2.5; marker-end:url(#arr); }
+      .flowB { fill:none; stroke:#2563eb; stroke-width:2.5; marker-end:url(#arrBlue); }
+      .flowR { fill:none; stroke:#dc2626; stroke-width:2.5; stroke-dasharray:8 6; marker-end:url(#arrRed); }
+      .tag { font-size:13px; font-weight:600; }
+    </style>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#ffffff"/>
+  <text x="60" y="58" class="t" font-size="34" font-weight="700">Kohler Assist — system architecture</text>
+  <text x="60" y="88" class="s" font-size="18">Two audiences, two front doors, one pipeline · persona filtered at retrieval · restricted evidence reasoned on-device · every call audited</text>
+
+  <!-- ───────── Front doors ───────── -->
+  <rect x="60" y="120" width="560" height="300" class="lane" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="84" y="152" class="t h" fill="#1d4ed8">EXTERNAL · customers</text>
+  <text x="84" y="176" class="s">public knowledge only · sign in with mobile number to act</text>
+
+  <rect x="84" y="196" width="250" height="200" class="box" fill="#ffffff" stroke="#93c5fd"/>
+  <text x="104" y="226" class="t" font-size="19" font-weight="600">📞 Phone — Sarvam AI voice agent</text>
+  <text x="104" y="252" class="s">+91 79658 53481 · inbound &amp; outbound</text>
+  <text x="104" y="274" class="s">Saaras STT (11 languages, LID) · Bulbul v3 TTS</text>
+  <text x="104" y="296" class="s">sarvam-105b dialogue · Vobiz telephony</text>
+  <text x="104" y="318" class="s">8 HTTPS tools → our backend</text>
+  <text x="104" y="340" class="s">on-start: load caller memory (caller ID)</text>
+  <text x="104" y="362" class="s">call-end webhook: transcript + summary</text>
+  <text x="104" y="384" class="s">"Call me now" → Instant Outbound API</text>
+
+  <rect x="354" y="196" width="246" height="200" class="box" fill="#ffffff" stroke="#93c5fd"/>
+  <text x="374" y="226" class="t" font-size="19" font-weight="600">💻 Website — customer mode</text>
+  <text x="374" y="252" class="s">Chat (public KBs)</text>
+  <text x="374" y="274" class="s">Help with my product:</text>
+  <text x="374" y="296" class="s">orders · register warranty · claim intake</text>
+  <text x="374" y="318" class="s">(7 questions + photos) · order · ask the team</text>
+  <text x="374" y="340" class="s">My requests · My messages (SMS/email)</text>
+  <text x="374" y="362" class="s">Sign-in: mobile number</text>
+
+  <rect x="60" y="440" width="560" height="200" class="lane" fill="#f5f3ff" stroke="#ddd6fe"/>
+  <text x="84" y="472" class="t h" fill="#6d28d9">INTERNAL · employees &amp; Customer Care</text>
+  <text x="84" y="496" class="s">public + internal + restricted knowledge · team sign-in (SSO in production)</text>
+  <rect x="84" y="512" width="516" height="108" class="box" fill="#ffffff" stroke="#c4b5fd"/>
+  <text x="104" y="542" class="t" font-size="19" font-weight="600">🖥 Web console — internal mode</text>
+  <text x="104" y="568" class="s">Knowledge chat over all 6 KBs (HR · Finance · Legal · Privacy · Support · Sustainability)</text>
+  <text x="104" y="590" class="s">Tickets console: Queue · Claims · Emails · Call-backs · Call transcripts · Audit log</text>
+  <text x="104" y="612" class="s">In-ticket policy check (case dossier + cited sources) · draft reply from thread · decide</text>
+
+  <!-- persona arrows into router -->
+  <path d="M620,300 C700,300 700,330 760,330" class="flowB"/>
+  <path d="M620,540 C700,540 700,370 760,370" class="flow" stroke="#6d28d9"/>
+  <text x="640" y="290" class="tag" fill="#1d4ed8">persona = customer</text>
+  <text x="640" y="560" class="tag" fill="#6d28d9">persona = internal</text>
+
+  <!-- ───────── Pipeline ───────── -->
+  <rect x="760" y="120" width="1100" height="520" class="lane" fill="#f9fafb" stroke="#e5e7eb"/>
+  <text x="784" y="152" class="t h">ONE PIPELINE · LangGraph on FastAPI</text>
+  <text x="784" y="176" class="s">Router → Retriever → Sensitivity gate → Reasoner → Compiler · the persona travels with every request</text>
+
+  <!-- Router -->
+  <rect x="784" y="260" width="190" height="200" class="box" fill="#ffffff" stroke="#9ca3af"/>
+  <text x="804" y="290" class="t" font-size="19" font-weight="600">1 · Intent Router</text>
+  <text x="804" y="316" class="s">gpt-5-mini, structured out</text>
+  <text x="804" y="338" class="s">intent · KBs · sub-queries</text>
+  <text x="804" y="360" class="s">requested format</text>
+  <text x="804" y="382" class="s">guards: internal ≠ action,</text>
+  <text x="804" y="404" class="s">drafting ≠ action</text>
+  <text x="804" y="440" class="s" font-style="italic">≈ 2 s</text>
+
+  <!-- Retriever -->
+  <path d="M974,360 L1010,360" class="flow"/>
+  <rect x="1012" y="240" width="230" height="240" class="box" fill="#ffffff" stroke="#9ca3af"/>
+  <text x="1032" y="270" class="t" font-size="19" font-weight="600">2 · Hybrid Retriever</text>
+  <text x="1032" y="296" class="s">BGE-M3 dense + BM25 sparse</text>
+  <text x="1032" y="318" class="s">Qdrant · RRF fusion · rerank</text>
+  <text x="1032" y="340" class="s">India-over-global precedence</text>
+  <rect x="1032" y="356" width="190" height="72" rx="8" fill="#fef3c7" stroke="#f59e0b"/>
+  <text x="1042" y="378" class="t" font-size="14" font-weight="600">FILTER INSIDE THE VECTOR DB</text>
+  <text x="1042" y="398" class="s" font-size="13">customer → public only</text>
+  <text x="1042" y="416" class="s" font-size="13">internal → public+internal+restricted</text>
+  <text x="1032" y="456" class="s" font-style="italic">≈ 6 s CPU · voice fast path ≈ 8 s total</text>
+
+  <!-- Gate -->
+  <path d="M1242,360 L1278,360" class="flow"/>
+  <rect x="1280" y="270" width="170" height="180" class="box" fill="#ffffff" stroke="#9ca3af"/>
+  <text x="1300" y="300" class="t" font-size="19" font-weight="600">3 · Sensitivity gate</text>
+  <text x="1300" y="326" class="s">any chunk restricted?</text>
+  <text x="1300" y="362" class="s">no → ☁ cloud model</text>
+  <text x="1300" y="384" class="s">yes → 🔒 on-device</text>
+  <text x="1300" y="406" class="s">(Ollama qwen3:4b)</text>
+  <text x="1300" y="436" class="s" font-style="italic">every call → audit log</text>
+
+  <!-- Reasoner -->
+  <path d="M1450,360 L1486,360" class="flow"/>
+  <rect x="1488" y="250" width="180" height="220" class="box" fill="#ffffff" stroke="#9ca3af"/>
+  <text x="1508" y="280" class="t" font-size="19" font-weight="600">4 · Reasoner</text>
+  <text x="1508" y="306" class="s">→ AnswerIR</text>
+  <text x="1508" y="328" class="s">claims + code-mapped</text>
+  <text x="1508" y="350" class="s">citations · access notes</text>
+  <text x="1508" y="372" class="s">contradiction detector:</text>
+  <text x="1508" y="394" class="s">superseded / review /</text>
+  <text x="1508" y="416" class="s">conflict (policy_key +</text>
+  <text x="1508" y="438" class="s">version ordering)</text>
+
+  <!-- Compiler -->
+  <path d="M1668,360 L1704,360" class="flow"/>
+  <rect x="1706" y="250" width="134" height="220" class="box" fill="#ffffff" stroke="#9ca3af"/>
+  <text x="1722" y="280" class="t" font-size="19" font-weight="600">5 · Compiler</text>
+  <text x="1722" y="306" class="s">text</text>
+  <text x="1722" y="328" class="s">JSON (schema)</text>
+  <text x="1722" y="350" class="s">Excel (live)</text>
+  <text x="1722" y="372" class="s">XML · table</text>
+  <text x="1722" y="394" class="s">email</text>
+  <text x="1722" y="416" class="s">spoken on call</text>
+  <text x="1722" y="450" class="s" font-style="italic">reuse: 2–4 s</text>
+
+  <!-- Models row -->
+  <rect x="1280" y="500" width="250" height="110" class="box" fill="#ecfdf5" stroke="#6ee7b7"/>
+  <text x="1300" y="530" class="t" font-size="17" font-weight="600">☁ Cloud — OpenAI</text>
+  <text x="1300" y="554" class="s">gpt-5-mini router + reasoner</text>
+  <text x="1300" y="576" class="s">gpt-4.1-mini voice fast path, judge</text>
+  <text x="1300" y="598" class="s">sees public + internal only</text>
+  <rect x="1550" y="500" width="290" height="110" class="box" fill="#fef2f2" stroke="#fca5a5"/>
+  <text x="1570" y="530" class="t" font-size="17" font-weight="600">🔒 On-device — Ollama qwen3:4b</text>
+  <text x="1570" y="554" class="s">all restricted evidence + drafts from it</text>
+  <text x="1570" y="576" class="s">CPU today, GPU-ready</text>
+  <text x="1570" y="598" class="s">leak test: 0 restricted chunks → cloud (452 calls)</text>
+  <path d="M1340,450 L1370,498" class="flow"/>
+  <path d="M1400,450 L1620,498" class="flowR"/>
+
+  <!-- Knowledge base -->
+  <rect x="784" y="500" width="460" height="110" class="box" fill="#fffbeb" stroke="#fcd34d"/>
+  <text x="804" y="530" class="t" font-size="17" font-weight="600">📚 Knowledge base — Qdrant, 1,540 chunks, 80 documents</text>
+  <text x="804" y="554" class="s">Internal-only KBs: HR · Finance · Legal   |   Customer-facing: Privacy · Support · Sustainability</text>
+  <text x="804" y="576" class="s">chunk payload: domain · region (global → IN) · audience · sensitivity (public / internal / restricted)</text>
+  <text x="804" y="598" class="s">· version · effective_date · policy_key · page · section · chunk_kind (prose / table)</text>
+  <path d="M1127,498 L1127,482" class="flow"/>
+
+  <!-- ───────── Shared layer ───────── -->
+  <rect x="60" y="670" width="1800" height="330" class="lane" fill="#f0fdf4" stroke="#bbf7d0"/>
+  <text x="84" y="702" class="t h" fill="#166534">SHARED LAYER · where customer actions become internal work (SQLite, every step audited)</text>
+
+  <rect x="84" y="726" width="520" height="250" class="box" fill="#ffffff" stroke="#86efac"/>
+  <text x="104" y="756" class="t" font-size="19" font-weight="600">Actions / CRM</text>
+  <text x="104" y="782" class="s">lookup_order · register_warranty · check_warranty</text>
+  <text x="104" y="804" class="s">open_claim → 7-question intake, coverage check,</text>
+  <text x="104" y="826" class="s">system recommendation, photo-upload link (SMS)</text>
+  <text x="104" y="848" class="s">place_order · request_callback · ask_team</text>
+  <text x="104" y="870" class="s">Rules applied &amp; audited; claims are NEVER auto-decided</text>
+  <text x="104" y="906" class="s" font-weight="600">Called identically from phone tools and website</text>
+  <text x="104" y="928" class="s">Notifications: SMS + email recap after every action</text>
+
+  <rect x="640" y="726" width="640" height="250" class="box" fill="#ffffff" stroke="#86efac"/>
+  <text x="660" y="756" class="t" font-size="19" font-weight="600">Ticket queue — internal team (5 employees)</text>
+  <text x="660" y="782" class="s">claims · customer emails · call-backs · product/info queries · order help → one shared queue</text>
+  <text x="660" y="804" class="s">take · internal notes · reply to customer (SMS + email) · priority · SLA age · full event history</text>
+  <text x="660" y="826" class="s">In-ticket policy check: threaded questions to the internal KB with the case dossier</text>
+  <text x="660" y="848" class="s">(request, claim &amp; coverage, photos, memory, call transcript) · cited sources</text>
+  <text x="660" y="870" class="s">"Draft reply from this thread" → on-device if the thread touched restricted evidence</text>
+  <text x="660" y="892" class="s">Human decision: approve / decline with note → customer notified, ticket resolved</text>
+  <text x="660" y="928" class="s" font-weight="600">Phone requests and web requests are indistinguishable here</text>
+
+  <rect x="1316" y="726" width="524" height="250" class="box" fill="#ffffff" stroke="#86efac"/>
+  <text x="1336" y="756" class="t" font-size="19" font-weight="600">Customer memory — one record per mobile number</text>
+  <text x="1336" y="782" class="s">name · last interaction summary · open items</text>
+  <text x="1336" y="804" class="s">· team replies · orders · claims · tickets</text>
+  <text x="1336" y="836" class="s" font-weight="600">Written by both sides:</text>
+  <text x="1336" y="858" class="s">customer actions, call-end webhook, team replies, decisions</text>
+  <text x="1336" y="890" class="s" font-weight="600">Read by both sides:</text>
+  <text x="1336" y="912" class="s">voice agent at call start (greets by name, resumes)</text>
+  <text x="1336" y="934" class="s">web chat "status of my claim" · Help panel · ticket dossier</text>
+
+  <!-- links between shared boxes -->
+  <path d="M604,850 L636,850" class="flow"/>
+  <path d="M1280,850 L1312,850" class="flow"/>
+  <!-- pipeline ↔ shared layer -->
+  <path d="M880,460 L880,666" class="flow"/>
+  <text x="890" y="650" class="tag" fill="#374151">actions &amp; account questions</text>
+  <path d="M1578,610 L1578,722" class="flowR"/>
+  <text x="1590" y="690" class="tag" fill="#b91c1c">ticket drafts stay on-device</text>
+  <!-- voice webhook to tickets/memory -->
+  <path d="M209,396 C209,660 500,700 660,724" class="flowB"/>
+  <text x="300" y="690" class="tag" fill="#1d4ed8">call-end webhook: transcript + summary → memory &amp; tickets</text>
+
+  <text x="60" y="1050" class="s" font-size="14">Prototype for educational purposes · all customer, order and claim data fictional · numbers are measured on the prototype (56-question evaluation, live calls)</text>
+</svg>

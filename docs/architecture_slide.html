@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Kohler Assist — System Architecture</title>
+<style>
+  :root{--ink:#0f172a;--mut:#475569;--line:#cbd5e1;--blue:#1d4ed8;--blueb:#dbeafe;--blueL:#eff6ff;--vio:#6d28d9;--vioL:#f5f3ff;--viob:#ddd6fe;--grn:#15803d;--grnL:#f0fdf4;--grnb:#bbf7d0;--amb:#b45309;--ambL:#fffbeb;--ambb:#fde68a;--red:#b91c1c;--redL:#fef2f2;--redb:#fecaca;--slate:#f8fafc}
+  *{box-sizing:border-box}
+  body{margin:0;background:#e2e8f0;font-family:"Segoe UI",Inter,Arial,sans-serif;color:var(--ink)}
+  .slide{width:1920px;height:1080px;background:#fff;position:relative;padding:14px 22px 30px;display:grid;grid-template-columns:1180px 1fr;grid-template-rows:1fr 232px;gap:12px}
+  .panel{border:2px solid var(--line);border-radius:14px;padding:10px 12px;background:#fff;position:relative;min-height:0;overflow:hidden}
+  .panel>h2{margin:0 0 6px;font-size:20px;letter-spacing:.3px;color:var(--blue);text-transform:uppercase}
+  .panel>h2 b{color:var(--ink)}
+  .lane{border:1.5px solid var(--line);border-radius:10px;padding:6px 8px;background:var(--slate)}
+  .lane h3{margin:0 0 5px;font-size:13px;text-transform:uppercase;letter-spacing:.4px;color:var(--blue)}
+  .box{border:1.5px solid var(--line);border-radius:9px;background:#fff;padding:5px 7px;font-size:11.5px;line-height:1.24}
+  .box b{display:block;font-size:12px;margin-bottom:1px}
+  .box .i{font-size:20px;float:left;margin:0 8px 0 0;line-height:1}
+  .mut{color:var(--mut)}
+  .row{display:flex;gap:8px;align-items:stretch}
+  .col{display:flex;flex-direction:column;gap:6px}
+  .arrow{align-self:center;color:#64748b;font-size:22px;line-height:1;flex:0 0 auto}
+  .ext{background:var(--blueL);border-color:#93c5fd}.ext h3{color:var(--blue)}
+  .int{background:var(--vioL);border-color:#c4b5fd}.int h3{color:var(--vio)}
+  .grn{background:var(--grnL);border-color:var(--grnb)}.grn h3{color:var(--grn)}
+  .amb{background:var(--ambL);border-color:var(--ambb)}.amb h3{color:var(--amb)}
+  .red{background:var(--redL);border-color:var(--redb)}.red h3{color:var(--red)}
+  .chip{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:1px 8px;font-size:11.5px;margin:2px 3px 0 0;background:#fff}
+  .step{display:flex;flex-direction:column;align-items:center;gap:3px}
+  .step .box{width:100%}
+  .vflow{display:flex;flex-direction:column;gap:3px;align-items:center}
+  .vflow .box{width:100%;text-align:center;padding:4px 6px;font-size:11.5px}
+  .vflow .va{color:#64748b;font-size:14px;line-height:1}
+  .num{display:inline-block;background:var(--ink);color:#fff;border-radius:6px;padding:0 6px;font-size:12px;margin-right:6px}
+  .kpi{display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;font-size:12px}
+  .kpi div b{color:var(--grn);font-size:13.5px}
+  .foot{position:absolute;left:22px;right:22px;bottom:8px;font-size:11px;color:var(--mut);display:flex;justify-content:space-between}
+  ul{margin:2px 0 0 14px;padding:0}li{margin:0}
+</style></head>
+<body><div class="slide">
+
+<!-- ═══════════════ 1. FULL SYSTEM ARCHITECTURE ═══════════════ -->
+<section class="panel" style="grid-row:1;grid-column:1;display:flex;flex-direction:column;gap:8px">
+  <h2>1. Full system architecture <b>— two audiences · two front doors · one brain</b></h2>
+
+  <!-- Row A: interfaces → gateway → router → retrieval → gate → reasoner → compiler -->
+  <div class="row" style="flex:0 0 auto">
+    <div class="col" style="width:250px">
+      <div class="lane ext" style="flex:1"><h3>🌐 External · customers</h3>
+        <div class="col">
+          <div class="box"><span class="i">📞</span><b>Phone — Sarvam AI voice agent</b>+91 79658 53481 · 11 Indian languages · in/outbound</div>
+          <div class="box"><span class="i">💬</span><b>Website chat</b>public knowledge, no sign-in needed</div>
+          <div class="box"><span class="i">🛠</span><b>Help with my product</b>orders · warranty · claims · photos · call me</div>
+        </div></div>
+      <div class="lane int"><h3>🏢 Internal · employees &amp; Customer Care</h3>
+        <div class="col">
+          <div class="box"><span class="i">📚</span><b>Knowledge chat</b>all 6 KBs · JSON/Excel/XML/email outputs</div>
+          <div class="box"><span class="i">🎫</span><b>Tickets console</b>queue · policy check · draft · decide</div>
+        </div></div>
+    </div>
+    <div class="arrow">➜</div>
+    <div class="col" style="width:112px;justify-content:center">
+      <div class="box" style="text-align:center"><span style="font-size:22px">⚡</span><b>FastAPI gateway</b>SSE streaming<br>persona on every request<br><span class="mut">tunnel for voice tools</span></div>
+    </div>
+    <div class="arrow">➜</div>
+    <div class="lane" style="flex:1;background:#fff">
+      <h3 style="color:var(--ink)">One pipeline · LangGraph · Router → Retriever → Gate → Reasoner → Compiler</h3>
+      <div class="row">
+        <div class="step" style="flex:1"><div class="box"><b><span class="num">1</span>Intent Router</b>gpt-5-mini · structured output<br>• intent &amp; knowledge bases<br>• cross-domain sub-queries<br>• output format<br>• guards (drafting ≠ action)</div></div>
+        <div class="arrow">➜</div>
+        <div class="step" style="flex:1.25"><div class="box"><b><span class="num">2</span>Hybrid Retriever (CPU)</b>BGE-M3 dense + BM25 · Qdrant RRF<br>bge-reranker · India-over-global<br><span style="background:var(--ambL);border:1px solid var(--ambb);border-radius:6px;padding:1px 5px;display:inline-block;margin-top:3px"><b style="display:inline;font-size:12px">Persona filter inside the DB</b><br>customer → public only<br>internal → public+internal+restricted</span></div></div>
+        <div class="arrow">➜</div>
+        <div class="step" style="flex:1"><div class="box red"><b><span class="num">3</span>Sensitivity gate</b>any <i>restricted</i> chunk?<br>no → ☁ cloud<br>yes → 🔒 on-device<br><span class="mut">every call → audit log</span></div></div>
+        <div class="arrow">➜</div>
+        <div class="step" style="flex:1.1"><div class="box"><b><span class="num">4</span>Reasoner → AnswerIR</b>claims + code-mapped citations<br>access notes for customers<br>contradiction detector:<br>superseded · review · conflict</div></div>
+        <div class="arrow">➜</div>
+        <div class="step" style="flex:.9"><div class="box grn"><b><span class="num">5</span>Compiler</b>text · JSON (schema)<br>Excel (live) · XML<br>table · email<br>spoken on the call<br><span class="mut">reuse 2–4 s</span></div></div>
+      </div>
+      <div class="row" style="margin-top:6px">
+        <div class="box amb" style="flex:1.4"><b>📖 Knowledge base — Qdrant · 80 docs · 1,540 chunks</b>Internal-only KBs: <b style="display:inline">HR · Finance · Legal</b> &nbsp;|&nbsp; Customer-facing: <b style="display:inline">Privacy · Support · Sustainability</b><br><span class="mut">chunk payload: domain · region (global → IN) · audience · sensitivity · version · effective date · policy_key · page · section</span></div>
+        <div class="box" style="flex:1"><b>☁ Cloud models — OpenAI</b>gpt-5-mini router + reasoner · gpt-4.1-mini voice fast path &amp; judge<br><span class="mut">sees public + internal text only</span></div>
+        <div class="box red" style="flex:1"><b>🔒 On-device — Ollama qwen3:4b</b>all restricted evidence + drafts built from it<br><span class="mut">CPU today · GPU-ready · leak test 0 / 452 calls</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row B: shared layer -->
+  <div class="lane grn" style="flex:0 0 auto"><h3>🔁 Shared actions layer — customer actions become internal work (SQLite · every step audited)</h3>
+    <div class="row">
+      <div class="box" style="flex:1.1"><b>⚙ Actions / CRM tools</b>lookup_order · register_warranty · check_warranty · open_claim (7-question intake + photo link by SMS + system recommendation) · place_order · request_callback · ask_team<br><span class="mut">called identically from phone tools and website · claims are never auto-decided</span></div>
+      <div class="arrow">➜</div>
+      <div class="box" style="flex:1.2"><b>🎫 Ticket queue — 5-person team</b>claims · emails · call-backs · product queries → one queue · take · notes · reply (SMS+email) · SLA age · history<br><span class="mut">in-ticket policy check with case dossier + cited sources · draft reply from the thread · human approve/decline</span></div>
+      <div class="arrow">⇄</div>
+      <div class="box" style="flex:1"><b>🧠 Customer memory — per mobile number</b>last interaction · open items · team replies · orders · claims<br><span class="mut">written by both sides · read at call start, in chat, Help panel, ticket dossier</span></div>
+      <div class="arrow">➜</div>
+      <div class="box" style="flex:.8"><b>✉ Notifications</b>SMS + email recap after every call, claim, upload, reply &amp; decision<br><span class="mut">simulated outbox in prototype</span></div>
+    </div>
+  </div>
+
+  <!-- Row C: security & governance -->
+  <div class="lane" style="flex:0 0 auto;background:#fff"><h3 style="color:var(--ink)">🛡 Security &amp; governance — enforced by architecture, not by prompt</h3>
+    <div class="row">
+      <div class="box" style="flex:1"><b>1. Access control</b>persona → Qdrant payload filter; customers cannot retrieve internal chunks; sign-in to act</div>
+      <div class="box" style="flex:1"><b>2. Data sovereignty</b>sensitivity per chunk; restricted evidence → on-device model; drafts inherit the rule</div>
+      <div class="box" style="flex:1"><b>3. Grounding</b>citations mapped in code (no invented sources); version conflicts surfaced, newest wins</div>
+      <div class="box" style="flex:1"><b>4. Human decision</b>agent prepares intake, coverage, recommendation; a specialist decides; all on the ticket history</div>
+      <div class="box red" style="flex:.9"><b>📊 Audit &amp; leak test</b>every model call, tool call, message &amp; decision logged<br><b style="display:inline;color:var(--red)">0 restricted → cloud</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 2. CHANNEL FLOWS ═══════════════ -->
+<section class="panel" style="grid-row:1;grid-column:2;display:flex;flex-direction:column;gap:8px">
+  <h2>2. Three journeys <b>— same brain, same record</b></h2>
+  <div class="row" style="flex:1;min-height:0">
+    <div class="lane ext" style="flex:1"><h3>📞 Customer on the phone</h3>
+      <div class="vflow">
+        <div class="box">Call +91 79658 53481 → language identified (11 languages, mid-call switching)</div><div class="va">▼</div>
+        <div class="box">On-start tool loads memory from caller ID → greets by name, resumes open items</div><div class="va">▼</div>
+        <div class="box">Policy question → ask_kohler_assist → same retrieval (public filter) ≈ 8 s</div><div class="va">▼</div>
+        <div class="box">Order lookup → 7-question claim intake → open_claim (pending, never approved by the bot)</div><div class="va">▼</div>
+        <div class="box">Quote / info / call-back → ask_team → ticket for the team</div><div class="va">▼</div>
+        <div class="box">Call-end webhook → transcript + summary → memory &amp; tickets · SMS + email recap</div>
+      </div></div>
+    <div class="lane ext" style="flex:1"><h3>💻 Customer on the website</h3>
+      <div class="vflow">
+        <div class="box">Ask anything (public KBs) — no sign-in</div><div class="va">▼</div>
+        <div class="box">Sign in with mobile number → same record as the phone</div><div class="va">▼</div>
+        <div class="box">"Status of my claim?" answered from memory (no LLM)</div><div class="va">▼</div>
+        <div class="box">Help panel: claim with intake + photos · register · order · ask the team</div><div class="va">▼</div>
+        <div class="box">Water-use comparison → Excel with live savings sheet</div><div class="va">▼</div>
+        <div class="box">My requests · My messages · "Call me now" (outbound call)</div>
+      </div></div>
+    <div class="lane int" style="flex:1"><h3>🏢 Internal team</h3>
+      <div class="vflow">
+        <div class="box">Knowledge chat: HR + Finance + Legal in one question, cited, version-flagged</div><div class="va">▼</div>
+        <div class="box">Any answer → JSON / Excel / XML / email in 2–4 s</div><div class="va">▼</div>
+        <div class="box">Restricted topic (salary bands, legal hold) → on-device badge</div><div class="va">▼</div>
+        <div class="box">Tickets: take → case dossier (incl. call transcript) → policy check thread with sources</div><div class="va">▼</div>
+        <div class="box">Draft reply from the thread → approve / decline with note</div><div class="va">▼</div>
+        <div class="box">Customer notified; phone &amp; chat quote the decision next time</div>
+      </div></div>
+  </div>
+</section>
+
+<!-- ═══════════════ 3. TECHNOLOGIES ═══════════════ -->
+<section class="panel" style="grid-row:2;grid-column:1">
+  <h2>3. Technologies used <b>— open-source retrieval on a CPU · Indian-language telephony · cloud only where safe</b></h2>
+  <div class="row" style="flex-wrap:nowrap">
+    <div class="box ext" style="flex:1.3"><b>🎙 Voice — Sarvam AI</b><span class="chip">Voice Agents platform</span><span class="chip">Saaras STT + LID</span><span class="chip">Bulbul v3 TTS</span><span class="chip">sarvam-105b</span><span class="chip">Vobiz number</span><span class="chip">Instant Outbound API</span><span class="chip">Sarvam MCP</span></div>
+    <div class="box" style="flex:1"><b>🧩 Orchestration &amp; API</b><span class="chip">LangGraph</span><span class="chip">FastAPI + SSE</span><span class="chip">Python 3.13</span><span class="chip">pydantic</span></div>
+    <div class="box" style="flex:1.1"><b>🔎 Retrieval</b><span class="chip">BGE-M3 (ONNX, fastembed)</span><span class="chip">BM25 sparse</span><span class="chip">Qdrant</span><span class="chip">bge-reranker-base</span><span class="chip">RRF fusion</span></div>
+    <div class="box" style="flex:1"><b>🤖 Models</b><span class="chip">OpenAI gpt-5-mini</span><span class="chip">gpt-4.1-mini</span><span class="chip red">Ollama qwen3:4b (on-device)</span></div>
+    <div class="box" style="flex:1"><b>📄 Ingestion &amp; outputs</b><span class="chip">PyMuPDF</span><span class="chip">RapidOCR</span><span class="chip">python-docx</span><span class="chip">openpyxl</span><span class="chip">jsonschema</span><span class="chip">XML</span></div>
+    <div class="box" style="flex:1"><b>🖥 App &amp; data</b><span class="chip">React 19</span><span class="chip">Vite</span><span class="chip">Tailwind 4</span><span class="chip">SQLite</span><span class="chip">Docker</span><span class="chip">56-question eval harness</span></div>
+  </div>
+</section>
+
+<!-- ═══════════════ 4. KEY BENEFITS ═══════════════ -->
+<section class="panel grn" style="grid-row:2;grid-column:2;background:var(--grnL);border-color:var(--grnb)">
+  <h2 style="color:var(--grn)">4. Key benefits <b>— measured</b></h2>
+  <div class="kpi">
+    <div>✅ <b>Everything by voice</b> — full claims, orders, requests on a real number in 11 languages</div>
+    <div>✅ <b>0 / 452</b> restricted chunks sent to the cloud (leak test, phone incl.)</div>
+    <div>✅ <b>49/49</b> retrieval hit · <b>0.97</b> faithfulness (LLM-judged) — internal 56-question eval</div>
+    <div>✅ <b>20/20</b> customer questions retrieved public chunks only (filter enforced in the DB)</div>
+    <div>✅ <b>Version conflicts surfaced</b> — real IN12-A→B &amp; Supplier Manual Rev 2.0→5.0 (7/7 pairs after fixes)</div>
+    <div>✅ <b>2–4 s</b> to switch an answer to JSON / Excel / email · ≈ 8 s policy answer on a call</div>
+    <div>✅ <b>One memory</b> across phone, chat, Help panel and team queue · SMS/email recaps</div>
+    <div>✅ <b>Human-in-the-loop</b> — agent prepares, specialist decides, full audit trail</div>
+    <div>✅ <b>Global-ready</b> — global parent / India child region model, 6 KBs on one schema</div>
+    <div>✅ <b>Low footprint</b> — CPU-first, 4B on-device model, mini cloud models</div>
+  </div>
+</section>
+
+<div class="foot"><span>Kohler Assist — unified enterprise AI agent · Track 3 prototype</span><span>All customer, order and claim data fictional · documents for educational purposes only · figures from our own 56-question evaluation (20 customer / 36 internal) and live calls — not an independent benchmark</span></div>
+</div></body></html>

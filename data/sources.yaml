@@ -1,0 +1,913 @@
+# Source manifest — real, publicly published documents used by the Kohler Unified Enterprise AI Agent prototype.
+#
+# RULES (see NOTICE.md):
+#   * Only documents Kohler (or the named third party) deliberately publishes for download.
+#   * One HTTP request per document. No crawling, no sitemap walking, no bulk page scraping.
+#   * method: script  -> fetched by scripts/fetch_sources.py
+#     method: manual  -> host blocks non-browser clients or its terms prohibit automated access;
+#                        open the URL in a browser and save to the given path yourself.
+#     method: covered -> content already present in another fetched document; not fetched again.
+#     method: dropped -> fetched but unusable (empty client-rendered shell); excluded from the corpus.
+#     method: excluded -> out of scope (US/UK-specific); file parked under data/raw/_excluded/, not ingested.
+#   * Files are stored under data/raw/ which is git-ignored. Never commit them.
+#   * Real documents are used unmodified and attributed. Synthetic documents live in data/synthetic/ and are
+#     clearly labelled fictional.
+#
+# Fields: id, title, domain (hr|finance|legal = internal knowledge bases; privacy|support|sustainability = customer-visible knowledge bases), region (global = parent, applies everywhere | IN = India child, overrides global),
+#         audience (public|internal) — every internal document is visible to the whole internal team,
+#         sensitivity (public|internal|restricted) — restricted additionally routes reasoning to the local model,
+#         tags, kind (pdf|html), url, method, path (relative to data/raw), notes
+
+defaults:
+  audience: public
+  sensitivity: public
+
+sources:
+  # ─────────────────────────── LEGAL / COMPLIANCE ───────────────────────────
+  - id: legal_supplier_code_of_conduct
+    title: Kohler Supplier Code of Conduct (Rev 12)
+    domain: legal
+    region: global
+    audience: internal
+    sensitivity: internal
+    tags: [supplier, anti-bribery, ethics, human-rights]
+    kind: pdf
+    url: https://resources.kohler.com/corporate/kohler/pdf/Kohler-Supplier-Code-of-Conduct_English.pdf
+    method: script
+    path: legal/global/supplier_code_of_conduct_rev12.pdf
+
+  - id: legal_supplier_terms
+    title: Kohler Supplier General Terms and Conditions (Purchase Orders)
+    domain: legal
+    region: global
+    audience: internal
+    sensitivity: internal
+    tags: [supplier, contract, procurement]
+    kind: pdf
+    url: https://resources.kohler.com/corporate/kohler/pdf/Suppler_General_Terms_and_Conditions-English.pdf
+    method: script
+    path: legal/global/supplier_general_terms_and_conditions.pdf
+
+  - id: legal_contractor_onsite
+    title: Kohler Contractor On-Site Policy
+    domain: legal
+    region: global
+    audience: internal
+    sensitivity: internal
+    tags: [supplier, safety, contractor]
+    kind: pdf
+    url: https://resources.kohler.com/corporate/kohler/pdf/supplier/On-Site_Contractor_Clauses.pdf
+    method: script
+    path: legal/global/contractor_onsite_policy.pdf
+
+  - id: legal_restricted_materials
+    title: Kohler Product Environmental Policy — Restricted Materials List (PEP-RML-001)
+    domain: legal
+    region: global
+    audience: internal
+    sensitivity: internal
+    tags: [compliance, sustainability, conflict-minerals, reach, rohs]
+    kind: pdf
+    url: https://resources.kohler.com/corporate/kohler/pdf/KohlerRML_English.pdf
+    method: script
+    path: legal/global/restricted_materials_list.pdf
+
+  - id: legal_supplier_sustainability_policy
+    title: Kohler Supplier Sustainability Policy (First Edition, effective 18 Nov 2024)
+    domain: legal
+    region: global
+    audience: internal
+    sensitivity: internal
+    tags: [supplier, sustainability, esg]
+    kind: pdf
+    url: https://resources.kohler.com/corporate/kohler/pdf/supplier/SupplierSustainabilityPolicy_v3.pdf
+    method: script
+    path: legal/global/supplier_sustainability_policy_2024.pdf
+
+  # Global Supplier Quality Manual — four real revisions (staleness / version-conflict test set)
+  - id: legal_sqm_rev1_1
+    title: Kohler Co. Global Supplier Quality Manual GPI 3009 — Rev 1.1 (effective 17 Nov 2008)
+    domain: legal
+    region: global
+    audience: internal
+    sensitivity: internal
+    tags: [supplier, quality, certification, version-history]
+    kind: pdf
+    url: https://resources.kohler.com/corporate/kohler/pdf/supplier/SQM_GPI_3009_Rev1_1_2008.pdf
+    method: script
+    path: legal/global/supplier_quality_manual_rev1.1_2008.pdf
+    policy_key: legal.supplier_quality_manual
+    version: "1.1"
+    effective_date: "2008-11-17"
+
+  - id: legal_sqm_rev2_0
+    title: Kohler Co. Global Supplier Quality Manual GPI 3009 — Rev 2.0 (effective 20 Jun 2013)
+    domain: legal
+    region: global
+    audience: internal
+    sensitivity: internal
+    tags: [supplier, quality, certification, version-history]
+    kind: pdf
+    url: https://resources.kohler.com/corporate/kohler/pdf/supplier/KohlerCoGlobalSupplierQualityManualrev20.pdf
+    method: script
+    path: legal/global/supplier_quality_manual_rev2.0_2013.pdf
+    policy_key: legal.supplier_quality_manual
+    version: "2.0"
+    effective_date: "2013-06-20"
+
+  - id: legal_sqm_rev3_0
+    title: Kohler Co. Global Supplier Quality Manual — Rev 3.0 (effective 1 Feb 2020)
+    domain: legal
+    region: global
+    audience: internal
+    sensitivity: internal
+    tags: [supplier, quality, certification, version-history]
+    kind: pdf
+    url: https://resources.kohler.com/corporate/kohler/pdf/GPP2004_Global_Supplier_Quality_Manual_rev3.0_English.pdf
+    method: script
+    path: legal/global/supplier_quality_manual_rev3.0_2020.pdf
+    policy_key: legal.supplier_quality_manual
+    version: "3.0"
+    effective_date: "2020-02-01"
+
+  - id: legal_sqm_rev5_0
+    title: Kohler Co. Global Supplier Quality Manual — Rev 5.0 (current)
+    domain: legal
+    region: global
+    audience: internal
+    sensitivity: internal
+    tags: [supplier, quality, certification, version-history]
+    kind: pdf
+    url: https://resources.kohler.com/corporate/kohler/pdf/supplier/Global_Supplier_Quality_Manual_Rev5_English.pdf
+    method: script
+    path: legal/global/supplier_quality_manual_rev5.0.pdf
+    policy_key: legal.supplier_quality_manual
+    version: "5.0"
+
+  - id: legal_kps_supplier_quality
+    title: Kohler Power Systems Supplier Quality Requirements (KPS-80012 Rev A)
+    domain: legal
+    region: global
+    audience: internal
+    sensitivity: internal
+    tags: [supplier, quality, division-supplement]
+    kind: pdf
+    url: https://resources.kohler.com/corporate/kohler/pdf/KPS-80012_Rev_A_KPS_Supplier_QualityRequirements.pdf
+    method: script
+    path: legal/global/kps_supplier_quality_requirements_revA.pdf
+
+  - id: legal_global_impact_report_2024
+    title: Kohler Co. 2024 Global Impact Report (ingest water-stewardship / net-zero / product sections)
+    domain: sustainability
+    region: global
+    tags: [esg, sustainability, water, net-zero]
+    kind: pdf
+    url: https://resources.kohler.com/corporate/kohler/pdf/Kohler_Co_2024_Global-Impact-Report.pdf
+    method: script
+    path: sustainability/global/global_impact_report_2024.pdf
+
+  - id: legal_global_impact_report_2024_appendix
+    title: Kohler Co. 2024 Global Impact Report — Appendix (metrics tables)
+    domain: sustainability
+    region: global
+    tags: [esg, sustainability, metrics]
+    kind: pdf
+    url: https://resources.kohler.com/corporate/kohler/pdf/Kohler_Co_2024_Global_Impact_Report_Appendix.pdf
+    method: script
+    path: sustainability/global/global_impact_report_2024_appendix.pdf
+
+  - id: legal_global_impact_report_2025_appendix
+    title: Kohler Co. 2025 Global Impact Report — Appendix
+    domain: sustainability
+    region: global
+    tags: [esg, sustainability, metrics]
+    kind: pdf
+    url: https://www.kohler.com/content/dam/kohler-com-NA/Lifestyle/PDF/kohler-2025-global-impact-report-appendix-new.pdf
+    method: manual
+    path: sustainability/global/global_impact_report_2025_appendix.pdf
+    notes: kohler.com blocks non-browser clients; open in browser and save.
+
+  - id: legal_ethics_code_of_conduct
+    title: Kohler Co. Code of Conduct / Corporate Ethics overview
+    domain: legal
+    region: global
+    audience: internal
+    sensitivity: internal
+    tags: [ethics, code-of-conduct]
+    kind: html
+    url: https://www.kohlercompany.com/ethics/
+    method: script
+    path: legal/global/ethics_code_of_conduct.html
+
+  - id: legal_ethics_anti_corruption
+    title: Kohler Co. Anti-Corruption and Third-Party Management
+    domain: legal
+    region: global
+    audience: internal
+    sensitivity: internal
+    tags: [anti-bribery, anti-corruption, third-party]
+    kind: html
+    url: https://www.kohlercompany.com/ethics/anti-corruption-and-third-party-management/
+    method: script
+    path: legal/global/ethics_anti_corruption.html
+
+  - id: legal_ethics_supplier_relationships
+    title: Kohler Co. Ethics — Supplier Relationships
+    domain: legal
+    region: global
+    audience: internal
+    sensitivity: internal
+    tags: [ethics, supplier, gifts]
+    kind: html
+    url: https://www.kohlercompany.com/ethics/supplier-relationships/
+    method: script
+    path: legal/global/ethics_supplier_relationships.html
+
+  - id: legal_human_rights_policy
+    title: Kohler Co. Global Human Rights Policy
+    domain: legal
+    region: global
+    audience: internal
+    sensitivity: internal
+    tags: [human-rights, esg, labour]
+    kind: html
+    url: https://www.kohlercompany.com/human-rights/human-rights/
+    method: script
+    path: legal/global/global_human_rights_policy.html
+
+  - id: legal_modern_slavery_statement
+    title: Kohler Co. Modern Slavery and Human Trafficking Statement (UK MSA 2015 / California Transparency in Supply Chains Act)
+    domain: legal
+    region: global
+    audience: internal
+    sensitivity: internal
+    tags: [human-rights, modern-slavery, uk, california]
+    kind: html
+    url: https://www.kohlercompany.com/human-rights/modern-slavery/
+    method: script
+    path: legal/global/modern_slavery_statement.html
+
+  - id: legal_us_legal_policy
+    title: kohler.com Legal Policy (website terms of use)
+    domain: support
+    region: US
+    tags: [terms, copyright, website]
+    kind: html
+    url: https://www.kohler.com/en/legal
+    method: excluded
+    path: support/us/kohler_com_legal_policy.md
+    notes: kohler.com blocks non-browser clients; text captured via browser session.
+    notes: Excluded — region-specific (US/UK) document; project scope is India + global only. File kept under data/raw/_excluded/.
+
+  - id: legal_us_sales_terms
+    title: kohler.com Terms and Conditions of Sale (updated 27 Jun 2025)
+    domain: support
+    region: US
+    tags: [terms, sales, consumer]
+    kind: html
+    url: https://www.kohler.com/en/legal/terms-and-conditions
+    method: excluded
+    path: support/us/kohler_com_terms_and_conditions.md
+    notes: kohler.com blocks non-browser clients; text captured via browser session.
+    notes: Excluded — region-specific (US/UK) document; project scope is India + global only. File kept under data/raw/_excluded/.
+
+  - id: legal_in_terms_and_conditions
+    title: Kohler India Terms and Conditions
+    domain: support
+    region: IN
+    tags: [terms, website, consumer]
+    kind: html
+    url: https://www.kohler.co.in/legal/terms-and-conditions
+    method: manual
+    path: support/in/kohler_india_terms_and_conditions.pdf
+    notes: kohler.co.in T&C clause 9 prohibits automated page access; save from browser (Print → Save as PDF).
+
+  - id: legal_in_terms_of_service
+    title: Kohler India Terms of Service (D2C portal)
+    domain: support
+    region: IN
+    tags: [terms, ecommerce, consumer]
+    kind: html
+    url: https://www.kohler.co.in/help/terms-of-service
+    method: manual
+    path: support/in/kohler_india_terms_of_service.pdf
+    notes: kohler.co.in T&C clause 9; save from browser.
+
+  - id: legal_in_csr_policy
+    title: Kohler India Corporate Social Responsibility Policy (Companies Act 2013 s.135)
+    domain: sustainability
+    region: IN
+    tags: [csr, india, companies-act]
+    kind: html
+    url: https://www.kohler.co.in/about-us/csr-policy
+    method: manual
+    path: sustainability/in/kohler_india_csr_policy_2021.pdf
+    notes: Downloaded from browser. Actual policy PDF (Ver. 2/2021-22, March & Dec 2021) rather than the web page.
+
+  # ─────────────────────────── PRIVACY ───────────────────────────
+  - id: privacy_corporate_notice
+    title: Kohler Co. Privacy Notice (corporate, all activities)
+    domain: privacy
+    region: global
+    tags: [privacy, gdpr, ccpa]
+    kind: html
+    url: https://resources.kohler.com/corporate/legal/privacy_en.html
+    method: script
+    path: privacy/global/kohler_co_privacy_notice.html
+
+  - id: privacy_workforce_notice
+    title: Kohler Workforce Privacy Notice (Rest of World)
+    domain: privacy
+    region: global
+    audience: internal
+    sensitivity: internal
+    tags: [privacy, employee-data, hr]
+    kind: html
+    url: https://resources.kohler.com/corporate/kohler/policy/Kohler_ROW_Workforce_Privacy_Notice.html
+    method: script
+    path: privacy/global/workforce_privacy_notice_row.html
+
+  - id: privacy_us_online_policy
+    title: Kohler Online Privacy Policy (US)
+    domain: privacy
+    region: US
+    tags: [privacy, ccpa, cookies]
+    kind: html
+    url: https://www.kohler.com/en/legal/privacy-policy
+    method: excluded
+    path: privacy/global/kohler_co_privacy_notice.md
+    notes: Same document as privacy_corporate_notice (Last Updated 10 Dec 2025, includes US-state, EEA/UK, Brazil, Canada, China supplements). Not fetched separately.
+    notes: Excluded — region-specific (US/UK) document; project scope is India + global only. File kept under data/raw/_excluded/.
+
+  - id: privacy_us_cookie_policy
+    title: Kohler Cookie Policy (US)
+    domain: privacy
+    region: global   # Kohler Co. cookie policy applies across its sites
+    tags: [privacy, cookies]
+    kind: html
+    url: https://www.kohler.com/en/legal/cookie-policy
+    method: manual
+    path: privacy/global/kohler_cookie_policy.pdf
+    notes: Saved from browser as PDF.
+
+  - id: privacy_in_policy
+    title: Kohler India Privacy Policy (IT Act 2000 / SPDI Rules; Grievance Officer)
+    domain: privacy
+    region: IN
+    tags: [privacy, india, it-act, dpdp]
+    kind: html
+    url: https://www.kohler.co.in/legal/privacy-policy
+    method: manual
+    path: privacy/in/kohler_india_privacy_policy.pdf
+    notes: kohler.co.in T&C clause 9; save from browser.
+
+  # ─────────────────────────── CUSTOMER SUPPORT ───────────────────────────
+  # Warranties
+  - id: support_us_faucet_lifetime_warranty
+    title: KOHLER Faucet Lifetime Limited Warranty (US)
+    domain: support
+    region: US
+    tags: [warranty, faucet]
+    kind: pdf
+    url: https://resources.kohler.com/webassets/kpna/catalog/pdf/en/1353511-12.pdf
+    method: excluded
+    path: support/us/faucet_lifetime_limited_warranty.pdf
+    notes: Excluded — region-specific (US/UK) document; project scope is India + global only. File kept under data/raw/_excluded/.
+
+  - id: support_us_toilet_warranty
+    title: KOHLER Toilets and Seats Limited Warranty (US)
+    domain: support
+    region: US
+    tags: [warranty, toilet]
+    kind: pdf
+    url: https://www.kohler.com/content/dam/kohler-com-NA/Lifestyle/PDP-PDF/PDP-PDF-Kohler%20Toilets%20&%20Seats%20Limited%20Warranty.pdf
+    method: excluded
+    path: support/us/toilets_and_seats_limited_warranty.pdf
+    notes: kohler.com blocks non-browser clients.
+    notes: Excluded — region-specific (US/UK) document; project scope is India + global only. File kept under data/raw/_excluded/.
+
+  - id: support_us_one_year_warranty
+    title: KOHLER One-Year Limited Warranty (US)
+    domain: support
+    region: US
+    tags: [warranty, general]
+    kind: pdf
+    url: https://www.kohler.com/content/dam/kohler-com-NA/Lifestyle/PDP-PDF/PDP-PDF-Kohler%20One-Year%20Limited%20Warranty.pdf
+    method: excluded
+    path: support/us/one_year_limited_warranty.pdf
+    notes: kohler.com blocks non-browser clients.
+    notes: Excluded — region-specific (US/UK) document; project scope is India + global only. File kept under data/raw/_excluded/.
+
+  - id: support_in_warranty_policy
+    title: Kohler India Warranty Policy (1677778-IN12) — public
+    domain: support
+    region: IN
+    tags: [warranty, india, residential, commercial]
+    kind: pdf
+    url: https://www.kohler.co.in/content/dam/kohler-com-INDIA/Authored%20Content/PDF/Warranty-Policy.pdf
+    method: script
+    path: support/in/warranty_policy_public_IN12-A.pdf
+    policy_key: support.in.warranty_policy
+    version: "IN12-A"
+    notes: Direct download of a document Kohler India publishes for download (T&C clause 8). Superseded by IN12-B.
+
+  - id: support_in_warranty_policy_internal
+    title: 'Kohler India Consolidated Warranty Policy — marked "Internal Communication: For internal & partner use only"'
+    domain: support
+    region: IN
+    audience: internal
+    sensitivity: internal
+    tags: [warranty, india, partner]
+    kind: pdf
+    url: https://www.kohler.co.in/content/dam/kohler-com-INDIA/Authored%20Content/PDF/consolidated_warranty_policy.pdf
+    method: script
+    path: support/in/warranty_policy_internal_partner_IN12-A.pdf
+    policy_key: support.in.warranty_policy
+    version: "IN12-A"
+    notes: Publicly hosted but classification-marked; used to demonstrate persona-based access.
+
+  # Knowledge-base articles (assist.kohler.com, robots.txt Allow: /) — hand-picked, one request each
+  - id: support_kb_return_policy
+    title: Kohler Assist — Return Policy (90 days, RGA)
+    domain: support
+    region: US
+    tags: [returns, refund, policy]
+    kind: html
+    url: https://assist.kohler.com/en/return-policy
+    method: excluded
+    path: support/us/kb_return_policy.html
+    notes: Excluded — region-specific (US/UK) document; project scope is India + global only. File kept under data/raw/_excluded/.
+
+  - id: support_kb_return_help
+    title: Kohler Assist — I need help with a return
+    domain: support
+    region: US
+    tags: [returns, process]
+    kind: html
+    url: https://assist.kohler.com/en/orders-and-returns/I-need-help-with-a-return
+    method: excluded
+    path: support/us/kb_return_help.html
+    notes: Page is a client-rendered Mavenoid widget; fetched HTML is an empty shell. Content covered by the official US warranty PDFs.
+    notes: Excluded — region-specific (US/UK) document; project scope is India + global only. File kept under data/raw/_excluded/.
+
+  - id: support_kb_order_status
+    title: Kohler Assist — Order Status
+    domain: support
+    region: US
+    tags: [orders, shipping]
+    kind: html
+    url: https://assist.kohler.com/en/orders-and-returns/Order-Status
+    method: excluded
+    path: support/us/kb_order_status.html
+    notes: Page is a client-rendered Mavenoid widget; fetched HTML is an empty shell. Content covered by the official US warranty PDFs.
+    notes: Excluded — region-specific (US/UK) document; project scope is India + global only. File kept under data/raw/_excluded/.
+
+  - id: support_kb_product_registration
+    title: Kohler Assist — Product Registration Guide
+    domain: support
+    region: US
+    tags: [registration, warranty]
+    kind: html
+    url: https://assist.kohler.com/en/product-registration/Product-Registration-Guide
+    method: excluded
+    path: support/us/kb_product_registration_guide.html
+    notes: Page is a client-rendered Mavenoid widget; fetched HTML is an empty shell. Content covered by the official US warranty PDFs.
+    notes: Excluded — region-specific (US/UK) document; project scope is India + global only. File kept under data/raw/_excluded/.
+
+  - id: support_kb_warranty_toilets
+    title: 'Kohler Assist — Warranty: Toilets and Seats'
+    domain: support
+    region: US
+    tags: [warranty, toilet]
+    kind: html
+    url: https://assist.kohler.com/en/warranty/Toilets-and-Seats
+    method: excluded
+    path: support/us/kb_warranty_toilets_and_seats.html
+    notes: Excluded — region-specific (US/UK) document; project scope is India + global only. File kept under data/raw/_excluded/.
+
+  - id: support_kb_warranty_faucets
+    title: 'Kohler Assist — Warranty: Faucets'
+    domain: support
+    region: US
+    tags: [warranty, faucet]
+    kind: html
+    url: https://assist.kohler.com/en/warranty/Faucets
+    method: excluded
+    path: support/us/kb_warranty_faucets.html
+    notes: Page is a client-rendered Mavenoid widget; fetched HTML is an empty shell. Content covered by the official US warranty PDFs.
+    notes: Excluded — region-specific (US/UK) document; project scope is India + global only. File kept under data/raw/_excluded/.
+
+  - id: support_kb_warranty_intelligent_toilets
+    title: 'Kohler Assist — Warranty: Intelligent Toilets and C3 Bidet Seats'
+    domain: support
+    region: US
+    tags: [warranty, intelligent-toilet]
+    kind: html
+    url: https://assist.kohler.com/en/warranty/Intelligent-Toilets-and-C3-Bidet-Seats
+    method: excluded
+    path: support/us/kb_warranty_intelligent_toilets.html
+    notes: Page is a client-rendered Mavenoid widget; fetched HTML is an empty shell. Content covered by the official US warranty PDFs.
+    notes: Excluded — region-specific (US/UK) document; project scope is India + global only. File kept under data/raw/_excluded/.
+
+  - id: support_kb_warranty_electronic_faucets
+    title: 'Kohler Assist — Warranty: Electronic Faucets, Valves and Controls'
+    domain: support
+    region: US
+    tags: [warranty, electronic-faucet]
+    kind: html
+    url: https://assist.kohler.com/en/warranty/Electronic-Faucets-Valves-and-Controls
+    method: excluded
+    path: support/us/kb_warranty_electronic_faucets.html
+    notes: Page is a client-rendered Mavenoid widget; fetched HTML is an empty shell. Content covered by the official US warranty PDFs.
+    notes: Excluded — region-specific (US/UK) document; project scope is India + global only. File kept under data/raw/_excluded/.
+
+  - id: support_kb_warranty_leak_detector
+    title: 'Kohler Assist — Warranty: Smart Home Water Leak Detector'
+    domain: support
+    region: US
+    tags: [warranty, smart-home, water]
+    kind: html
+    url: https://assist.kohler.com/en/warranty/Smart-Home-Water-Leak-Detector
+    method: excluded
+    path: support/us/kb_warranty_leak_detector.html
+    notes: Page is a client-rendered Mavenoid widget; fetched HTML is an empty shell. Content covered by the official US warranty PDFs.
+
+  # Product spec sheets (sustainability tag → water-efficiency comparisons)
+    notes: Excluded — region-specific (US/UK) document; project scope is India + global only. File kept under data/raw/_excluded/.
+
+  - id: support_spec_k3609_cimarron
+    title: Cimarron K-3609 two-piece elongated 1.28 gpf toilet — spec sheet
+    domain: support
+    region: global   # product engineering data (gpf/gpm), sold in India too; not US policy
+    tags: [product, spec, toilet, sustainability, watersense]
+    kind: pdf
+    url: https://resources.kohler.com/onlinecatalog/pdf/K-3609_spec.pdf
+    method: script
+    path: support/global/specs/K-3609_cimarron_spec.pdf
+
+  - id: support_spec_k3493_highline
+    title: Highline K-3493 toilet — spec sheet
+    domain: support
+    region: global   # product engineering data (gpf/gpm), sold in India too; not US policy
+    tags: [product, spec, toilet, sustainability, watersense]
+    kind: pdf
+    url: https://resources.kohler.com/onlinecatalog/pdf/K-3493_spec.pdf
+    method: script
+    path: support/global/specs/K-3493_highline_spec.pdf
+
+  - id: support_spec_k3814_corbelle
+    title: Corbelle K-3814 toilet — spec sheet
+    domain: support
+    region: global   # product engineering data (gpf/gpm), sold in India too; not US policy
+    tags: [product, spec, toilet, sustainability, watersense]
+    kind: pdf
+    url: https://resources.kohler.com/onlinecatalog/pdf/K-3814_spec.pdf
+    method: script
+    path: support/global/specs/K-3814_corbelle_spec.pdf
+
+  - id: support_spec_k3998_wellworth
+    title: Wellworth K-3998 toilet — spec sheet
+    domain: support
+    region: global   # product engineering data (gpf/gpm), sold in India too; not US policy
+    tags: [product, spec, toilet, sustainability, watersense]
+    kind: pdf
+    url: https://resources.kohler.com/onlinecatalog/pdf/K-3998_spec.pdf
+    method: script
+    path: support/global/specs/K-3998_wellworth_spec.pdf
+
+  - id: support_spec_k5481
+    title: K-5481 two-piece round-front 1.28 gpf toilet — spec sheet
+    domain: support
+    region: global   # product engineering data (gpf/gpm), sold in India too; not US policy
+    tags: [product, spec, toilet, sustainability, watersense]
+    kind: pdf
+    url: https://resources.kohler.com/webassets/kpna/catalog/pdf/en/K-5481_spec.pdf
+    method: script
+    path: support/global/specs/K-5481_spec.pdf
+
+  - id: support_spec_k3810
+    title: K-3810 toilet — spec sheet
+    domain: support
+    region: global   # product engineering data (gpf/gpm), sold in India too; not US policy
+    tags: [product, spec, toilet, sustainability]
+    kind: pdf
+    url: https://resources.kohler.com/onlinecatalog/pdf/K-3810_spec.pdf
+    method: script
+    path: support/global/specs/K-3810_spec.pdf
+
+  - id: support_spec_k4007
+    title: K-4007 toilet — spec sheet
+    domain: support
+    region: global   # product engineering data (gpf/gpm), sold in India too; not US policy
+    tags: [product, spec, toilet, sustainability]
+    kind: pdf
+    url: https://resources.kohler.com/onlinecatalog/pdf/K-4007_spec.pdf
+    method: script
+    path: support/global/specs/K-4007_spec.pdf
+
+  - id: support_spec_k596_simplice
+    title: Simplice K-596 kitchen faucet — spec sheet (gpm)
+    domain: support
+    region: global   # product engineering data (gpf/gpm), sold in India too; not US policy
+    tags: [product, spec, faucet, sustainability]
+    kind: pdf
+    url: https://resources.kohler.com/onlinecatalog/pdf/K-596_spec.pdf
+    method: script
+    path: support/global/specs/K-596_simplice_spec.pdf
+
+  - id: support_spec_k10433
+    title: K-10433 faucet — spec sheet
+    domain: support
+    region: global   # product engineering data (gpf/gpm), sold in India too; not US policy
+    tags: [product, spec, faucet, sustainability]
+    kind: pdf
+    url: https://resources.kohler.com/onlinecatalog/pdf/K-10433_spec.pdf
+    method: script
+    path: support/global/specs/K-10433_spec.pdf
+
+  - id: support_spec_k22169_showerhead
+    title: K-22169 showerhead — spec sheet (gpm)
+    domain: support
+    region: global   # product engineering data (gpf/gpm), sold in India too; not US policy
+    tags: [product, spec, showerhead, sustainability]
+    kind: pdf
+    url: https://resources.kohler.com/onlinecatalog/pdf/K-22169_spec.pdf
+    method: script
+    path: support/global/specs/K-22169_showerhead_spec.pdf
+
+  - id: support_spec_k72775
+    title: K-72775 — spec sheet
+    domain: support
+    region: global   # product engineering data (gpf/gpm), sold in India too; not US policy
+    tags: [product, spec]
+    kind: pdf
+    url: https://resources.kohler.com/onlinecatalog/pdf/K-72775_spec.pdf
+    method: script
+    path: support/global/specs/K-72775_spec.pdf
+
+  - id: support_watersense_brochure
+    title: KOHLER WaterSense Toilets brochure (EPA WaterSense)
+    domain: sustainability
+    region: global   # product engineering data (gpf/gpm), sold in India too; not US policy
+    tags: [product, sustainability, watersense, water]
+    kind: pdf
+    url: https://resources.kohler.com/common/pdfs/watersensetoilets.pdf
+    method: script
+    path: sustainability/global/watersense_toilets_brochure.pdf
+
+  - id: support_in_kumin_install
+    title: Kohler India — Kumin SC lavatory faucet installation instructions (0.5–5.5 bar, 65 °C)
+    domain: support
+    region: IN
+    tags: [product, installation, faucet, india]
+    kind: pdf
+    url: https://resources.kohler.com/plumbing/kohlerindia/pdf/98827.pdf
+    method: script
+    path: support/in/kumin_faucet_installation_instructions.pdf
+
+  - id: support_in_warranty_help
+    title: Kohler India — Warranty information page (coverage and claims)
+    domain: support
+    region: IN
+    tags: [warranty, india]
+    kind: html
+    url: https://www.kohler.co.in/help/warranty
+    method: covered
+    path: support/in/warranty_policy_public_IN12-B.pdf
+    notes: The help page links the per-product-line warranty PDFs, which were downloaded individually (see support_in_* entries below).
+
+  - id: support_in_water_saving_blog
+    title: Kohler India blog — Water-saving faucet technologies
+    domain: sustainability
+    region: IN
+    tags: [product, sustainability, water, india]
+    kind: html
+    url: https://www.kohler.co.in/blog/refined-spaces/water-saving-faucet-technologies
+    method: manual
+    path: sustainability/in/kohler_india_water_saving_faucets_blog.pdf
+    notes: kohler.co.in T&C clause 9; save from browser.
+
+  # ─────────────────────────── HR (real, HR-adjacent) ───────────────────────────
+  - id: hr_mira_gender_pay_report_2025
+    title: Kohler Mira Ltd Gender Pay Report 2025 (UK statutory)
+    domain: hr
+    region: UK
+    audience: internal
+    sensitivity: internal
+    tags: [hr, pay, diversity, uk-statutory]
+    kind: pdf
+    url: https://www.mirashowers.co.uk/content/dam/mirashowers-com-UK/Authored%20Content/PDF/PDF-aaj42909.pdf
+    method: excluded
+    path: hr/uk/kohler_mira_gender_pay_report_2025.pdf
+    notes: Statutory public disclosure under UK Equality Act 2010 regulations.
+    notes: Excluded — region-specific (US/UK) document; project scope is India + global only. File kept under data/raw/_excluded/.
+
+  - id: hr_careers_how_we_hire
+    title: 'Kohler Careers — How We Hire (hiring process)'
+    domain: hr
+    region: global
+    audience: internal
+    sensitivity: internal
+    tags: [hr, recruiting, careers]
+    kind: html
+    url: https://www.kohlercompany.com/careers/how-we-hire/
+    method: script
+    path: hr/global/careers_how_we_hire.html
+
+  - id: hr_careers_our_people
+    title: Kohler Careers — Our People (benefits, development, flexible work)
+    domain: hr
+    region: global
+    audience: internal
+    sensitivity: internal
+    tags: [hr, benefits, culture]
+    kind: html
+    url: https://www.kohlercompany.com/careers/our-people/
+    method: script
+    path: hr/global/careers_our_people.html
+
+  # ─────────────────────────── REFERENCE (third-party, public) ───────────────────────────
+  - id: ref_cse_water_efficient_fixtures
+    title: CSE India — Rating System for Water Efficient Fixtures
+    domain: sustainability
+    region: IN
+    tags: [standards, water-efficiency, india, bis]
+    kind: pdf
+    url: https://www.cseindia.org/content/downloadreports/7655
+    method: script
+    path: sustainability/in/cse_rating_system_water_efficient_fixtures.pdf
+    notes: © Centre for Science and Environment. Used as background reference only.
+
+  - id: ref_clasp_india_water_efficiency
+    title: CLASP — In-depth Assessment of Water Efficiency Opportunities in India (Jan 2021)
+    domain: sustainability
+    region: IN
+    tags: [standards, water-efficiency, india, policy]
+    kind: pdf
+    url: https://www.clasp.ngo/wp-content/uploads/2021/01/India-Water-Efficiency-Scoping-Study.pdf
+    method: script
+    path: sustainability/in/clasp_india_water_efficiency_scoping_study_2021.pdf
+    notes: © CLASP. Used as background reference only.
+
+  # ── Added after manual download round ──
+  - id: support_in_warranty_policy_b
+    title: Kohler India Warranty Policy (1677778-IN12-B) — current revision
+    domain: support
+    region: IN
+    tags: [warranty, india, residential, commercial, version-history]
+    kind: pdf
+    url: https://www.kohler.co.in/help/warranty
+    method: manual
+    path: support/in/warranty_policy_public_IN12-B.pdf
+    policy_key: support.in.warranty_policy
+    version: "IN12-B"
+    supersedes: "IN12-A"
+    notes: Real revision change vs IN12-A — Intelligent Toilet coverage 3y/1y -> 5y/1y with preventive maintenance; PVD/BL finish; clause renumbering. Unplanted version-conflict test case.
+
+  - id: support_in_warranty_sanitaryware
+    title: KOHLER India Sanitaryware and Bathing Products Limited Warranty
+    domain: support
+    region: IN
+    tags: [warranty, india, sanitaryware, bathing]
+    kind: pdf
+    url: https://www.kohler.co.in/help/warranty
+    method: manual
+    path: support/in/sanitaryware_and_bathing_limited_warranty.pdf
+
+  - id: support_in_warranty_faucet
+    title: KOHLER India Faucet Limited Warranty
+    domain: support
+    region: IN
+    tags: [warranty, india, faucet]
+    kind: pdf
+    url: https://www.kohler.co.in/help/warranty
+    method: manual
+    path: support/in/faucet_limited_warranty.pdf
+
+  - id: support_in_warranty_kitchen_sink
+    title: KOHLER India Kitchen Sink Limited Warranty
+    domain: support
+    region: IN
+    tags: [warranty, india, sink]
+    kind: pdf
+    url: https://www.kohler.co.in/help/warranty
+    method: manual
+    path: support/in/kitchen_sink_limited_warranty.pdf
+
+  - id: support_in_warranty_bathroom_furniture
+    title: KOHLER India Bathroom Furniture (Mirrors) Limited Warranty
+    domain: support
+    region: IN
+    tags: [warranty, india, furniture, mirror]
+    kind: pdf
+    url: https://www.kohler.co.in/help/warranty
+    method: manual
+    path: support/in/bathroom_furniture_limited_warranty.pdf
+
+  - id: support_in_warranty_shower_enclosure
+    title: KOHLER India Shower Door Enclosures Warranty Terms & Conditions
+    domain: support
+    region: IN
+    tags: [warranty, india, shower]
+    kind: pdf
+    url: https://www.kohler.co.in/help/warranty
+    method: manual
+    path: support/in/shower_enclosure_limited_warranty.pdf
+
+  - id: support_in_warranty_shower_glass
+    title: KOHLER India Shower Glass Fittings Five-Year Limited Warranty
+    domain: support
+    region: IN
+    tags: [warranty, india, shower]
+    kind: pdf
+    url: https://www.kohler.co.in/help/warranty
+    method: manual
+    path: support/in/shower_glass_fittings_five_year_warranty.pdf
+
+  - id: support_in_warranty_trash_can
+    title: KOHLER India Trash Can Limited Warranty
+    domain: support
+    region: IN
+    tags: [warranty, india, accessories]
+    kind: pdf
+    url: https://www.kohler.co.in/help/warranty
+    method: manual
+    path: support/in/trash_can_limited_warranty.pdf
+
+  - id: legal_in_csr_annexure_fy25
+    title: Kohler India CSR Annexure FY 2024-25 (Annexure A-2)
+    domain: sustainability
+    region: IN
+    tags: [csr, india, companies-act, esg]
+    kind: pdf
+    url: https://www.kohler.co.in/csr
+    method: manual
+    path: sustainability/in/kohler_india_csr_annexure_fy2024-25.pdf
+
+  - id: legal_in_csr_projects_fy24
+    title: Kohler India CSR Projects FY 2023-24
+    domain: sustainability
+    region: IN
+    tags: [csr, india, esg]
+    kind: pdf
+    url: https://www.kohler.co.in/csr
+    method: manual
+    path: sustainability/in/kohler_india_csr_projects_fy2023-24.pdf
+
+  - id: legal_in_annual_csr_report_2022
+    title: Kohler India Annual CSR Report 2021-22 (scanned; OCR text sidecar)
+    domain: sustainability
+    region: IN
+    tags: [csr, india, esg, ocr]
+    kind: pdf
+    url: https://www.kohler.co.in/csr
+    method: manual
+    path: sustainability/in/kohler_india_annual_csr_report_2021-22_SCANNED.pdf
+    text_path: sustainability/in/kohler_india_annual_csr_report_2021-22_SCANNED.ocr.md
+    notes: Image-only scan. OCR'd with scripts/ocr_scanned.py (RapidOCR, mean confidence ~0.80); ingest from text_path, cite pages via its page markers.
+
+  - id: legal_in_csr_annexure_2021
+    title: Kohler India CSR Annexure 2021 (scanned; OCR text sidecar)
+    domain: sustainability
+    region: IN
+    tags: [csr, india, esg, ocr]
+    kind: pdf
+    url: https://www.kohler.co.in/csr
+    method: manual
+    path: sustainability/in/kohler_india_csr_annexure_2021_SCANNED.pdf
+    text_path: sustainability/in/kohler_india_csr_annexure_2021_SCANNED.ocr.md
+    notes: Image-only scan. OCR'd with scripts/ocr_scanned.py (RapidOCR, mean confidence ~0.80); ingest from text_path, cite pages via its page markers.
+
+  # ── Kohler India policy pages referenced by the Terms and Conditions (manual save — T&C clause 9) ──
+  - id: support_in_refund_policy
+    title: Kohler India Refund Policy (D2C)
+    domain: support
+    region: IN
+    tags: [returns, refund, india, ecommerce]
+    kind: html
+    url: https://www.kohler.co.in/help/refund-policy
+    method: manual
+    path: support/in/kohler_india_refund_policy.pdf
+    notes: Referenced by the India T&Cs; save from browser (Print -> Save as PDF).
+
+  - id: support_in_shipping_policy
+    title: Kohler India Shipping Policy (D2C)
+    domain: support
+    region: IN
+    tags: [shipping, delivery, india, ecommerce]
+    kind: html
+    url: https://www.kohler.co.in/help/shipping-policy
+    method: manual
+    path: support/in/kohler_india_shipping_policy.pdf
+    notes: Referenced by the India T&Cs; save from browser.
+
+  - id: support_in_installation_policy
+    title: Kohler India Installation Services and Terms
+    domain: support
+    region: IN
+    tags: [installation, services, india]
+    kind: html
+    url: https://www.kohler.co.in/help/installation-services
+    method: manual
+    path: support/in/kohler_india_installation_services.pdf
+    notes: Referenced by the India T&Cs; save from browser.
