@@ -1,5 +1,20 @@
 # Conversation AI chatbot and callbot — Kohler Unified Enterprise AI Agent (Track 3)
 
+## 📦 Submission
+
+| Deliverable | Link |
+|---|---|
+| 🎬 **Demo video** (4 min, 1280×720) | **[▶ Watch / download Demo_Video.mp4](https://github.com/Harsh-Go-yal/Conversation-AI-chatbot-and-callbot/releases/latest/download/Demo_Video.mp4)** — attached to the [v1.0 release](https://github.com/Harsh-Go-yal/Conversation-AI-chatbot-and-callbot/releases/latest) |
+| 📑 **Pitch deck** (4 slides, PDF) | [submission/Pitch_Deck.pdf](submission/Pitch_Deck.pdf) · [.pptx](submission/Pitch_Deck.pptx) |
+| 📘 **Prompt documentation** (PDF) | [submission/Prompt_Documentation.pdf](submission/Prompt_Documentation.pdf) |
+| 🧭 Architecture infographic | [docs/architecture_slide.png](docs/architecture_slide.png) |
+| 💻 Working model | this repository — run instructions below |
+
+**Prepared by Harsh Goyal** · harshgoyal0807@gmail.com · +91 70935 23468
+
+---
+
+
 An India-first enterprise assistant for **customers** and the **internal team**: it answers questions across HR,
 Finance, Legal/Compliance, Privacy, Customer Support and Sustainability knowledge bases with citations, renders any
 answer as text / JSON (your schema) / Excel / XML / Markdown / email, detects superseded policy versions, keeps
@@ -38,8 +53,10 @@ docker compose up -d
 cd backend; python -m app.ingest.run --recreate; cd ..
 
 # 3. run the app
-.un_backend.ps1                          # FastAPI  http://localhost:8010  (OpenAPI docs at /docs)
-.un_frontend.ps1                         # React    http://localhost:5180
+.
+un_backend.ps1                          # FastAPI  http://localhost:8010  (OpenAPI docs at /docs)
+.
+un_frontend.ps1                         # React    http://localhost:5180
 
 # 4. (optional) pre-run the demo conversations so signed-in users open finished chats
 python scripts/seed_demo_conversations.py --employees E001 E003
@@ -56,7 +73,8 @@ python scripts/seed_demo_conversations.py --employees E001 E003
 
 **Voice line (optional).** The Sarvam agent is configured on the platform, not in this repo; `docs/VOICE_AGENT.md` has the
 tool list, prompt rules and ids. To connect it to your own backend: expose port 8010 on a stable https hostname
-(`.un_tunnel.ps1` runs localtunnel on a fixed subdomain), set `PUBLIC_BASE_URL` and the `SARVAM_*` values in `.env`,
+(`.
+un_tunnel.ps1` runs localtunnel on a fixed subdomain), set `PUBLIC_BASE_URL` and the `SARVAM_*` values in `.env`,
 and point the agent's HTTP tools and call-end webhook at that hostname.
 
 ## Evaluate
