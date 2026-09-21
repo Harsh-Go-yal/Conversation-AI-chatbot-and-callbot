@@ -1,4 +1,4 @@
-# Kohler Unified Enterprise AI Agent — Project Specification (v1.8, as built)
+# Unified Enterprise AI Agent — Project Specification (v1.8, as built)
 
 Track 3 — *Unified Enterprise AI Agent*. This document is the single source of truth for scope, architecture,
 technology choices, features and evaluation. Changes require an entry in `Prompt Documentation.md`.

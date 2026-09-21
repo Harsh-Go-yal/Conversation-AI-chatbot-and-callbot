@@ -1,4 +1,4 @@
-# Voice agent — "Kohler India Care (prototype)"
+# Voice agent — "India Care (prototype)"
 
 The phone channel is a **Sarvam Voice Agents** app that calls back into this backend for every fact and every action.
 Nothing about warranties, orders or policies lives on the voice platform: the agent's prompt tells it to *always* use a

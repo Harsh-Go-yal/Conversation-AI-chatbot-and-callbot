@@ -1,4 +1,4 @@
-# Conversation AI chatbot and callbot — Kohler Unified Enterprise AI Agent (Track 3)
+# Conversation AI chatbot and callbot — Unified Enterprise AI Agent (Track 3)
 
 ## 📦 Submission
 
@@ -122,7 +122,7 @@ Last full CPU run: retrieval hit 49/49, faithfulness 0.97 (LLM-judged, n=43), cu
 p50 ≈ 14 s cloud / ≈ 2 min on-device. This is an internal harness, not an independent benchmark. Details and per-question table: `eval/results/latest.md`, targets vs results in `docs/SPEC.md` §7.
 
 ## Voice agent (Sarvam AI)
-Deployed on the Sarvam Voice Agents platform as **"Kohler India Care (prototype)"** and reachable on **+91 79658 53481**
+Deployed on the Sarvam Voice Agents platform as **"India Care (prototype)"** and reachable on **+91 79658 53481**
 (inbound + outbound). The agent has no knowledge of its own: eight HTTP tools call this backend through a public
 tunnel — `/voice/ask` (public-only retrieval + `gpt-4.1-mini`, ~8 s) for every policy/product question and
 `/actions/*` for order lookup, warranty check/registration, claims (rules applied server-side), orders and call-backs.
