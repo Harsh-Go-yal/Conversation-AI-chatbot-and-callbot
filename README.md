@@ -3,15 +3,15 @@
 ## 📦 Submission
 
 > ### 📞 Calling bot demo — a real phone call to the agent
-> **[▶ Watch Calling_Bot_Demo.mp4](https://github.com/Harsh-Go-yal/Conversation-AI-chatbot-and-callbot/raw/main/submission/Calling_Bot_Demo.mp4)** (49 MB — opens in your browser's video player)
+> **[▶ Watch on YouTube](https://youtu.be/d3ui3dMgVZI)** · [Calling_Bot_Demo.mp4](https://github.com/Harsh-Go-yal/Conversation-AI-chatbot-and-callbot/raw/main/submission/Calling_Bot_Demo.mp4) (49 MB — opens in your browser's video player)
 > A customer dials **+91 79658 53481** and talks to the Sarvam AI voice agent: it recognises the caller from their number,
 > looks up their order, checks warranty coverage and walks through a claim — the same brain, rules and ticket queue as the chat,
 > in the caller's own language. This is the part that makes it a **callbot, not just a chatbot**.
 
 | Deliverable | Link |
 |---|---|
-| 📞 **Calling bot demo** (live phone call) | **[▶ Play](https://github.com/Harsh-Go-yal/Conversation-AI-chatbot-and-callbot/raw/main/submission/Calling_Bot_Demo.mp4)** · [file in repo](submission/Calling_Bot_Demo.mp4) · also on the [v1.0 release](https://github.com/Harsh-Go-yal/Conversation-AI-chatbot-and-callbot/releases/latest) |
-| 🎬 **Product demo video** (4 min — chat, tickets console, voice) | **[▶ Watch / download Demo_Video.mp4](https://github.com/Harsh-Go-yal/Conversation-AI-chatbot-and-callbot/releases/latest/download/Demo_Video.mp4)** — attached to the [v1.0 release](https://github.com/Harsh-Go-yal/Conversation-AI-chatbot-and-callbot/releases/latest) |
+| 📞 **Calling bot demo** (live phone call) | **[▶ YouTube](https://youtu.be/d3ui3dMgVZI)** · [▶ Play mp4](https://github.com/Harsh-Go-yal/Conversation-AI-chatbot-and-callbot/raw/main/submission/Calling_Bot_Demo.mp4) · [file in repo](submission/Calling_Bot_Demo.mp4) · also on the [v1.0 release](https://github.com/Harsh-Go-yal/Conversation-AI-chatbot-and-callbot/releases/latest) |
+| 🎬 **Product demo video** (4 min — chat, tickets console, voice) | **[▶ YouTube](https://youtu.be/K3nxK4xq7L4)** · [▶ Watch / download Demo_Video.mp4](https://github.com/Harsh-Go-yal/Conversation-AI-chatbot-and-callbot/releases/latest/download/Demo_Video.mp4)** — attached to the [v1.0 release](https://github.com/Harsh-Go-yal/Conversation-AI-chatbot-and-callbot/releases/latest) |
 | 📑 **Pitch deck** (4 slides, PDF) | [submission/Pitch_Deck.pdf](submission/Pitch_Deck.pdf) · [.pptx](submission/Pitch_Deck.pptx) |
 | 📘 **Prompt documentation** (PDF) | [submission/Prompt_Documentation.pdf](submission/Prompt_Documentation.pdf) |
 | 🧭 Architecture infographic | [docs/architecture_slide.png](docs/architecture_slide.png) |
